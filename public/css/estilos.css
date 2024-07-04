@@ -1,0 +1,11 @@
+#wrap {
+	margin: 0 auto 0 auto;
+	width: 30%;
+	min-width: 350px;
+}
+
+#wrap > div {
+	margin-top: 100px;
+}
+
+

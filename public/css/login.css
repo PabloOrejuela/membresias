@@ -1,0 +1,22 @@
+input[type=text] {
+    width: 100%;
+    padding: 10px;
+    display: inline-block;
+    /* border: 1px solid #ccc; */
+    border-radius: 7px;
+    box-sizing: border-box;
+}
+
+input[type=password] {
+    width: 100%;
+    padding: 10px;
+    display: inline-block;
+    /*border: 1px solid #ccc;*/
+    border-radius: 7px;
+    box-sizing: border-box;
+}
+
+.login-logo{
+    text-align: center;
+    margin: 30px 10px;
+}
