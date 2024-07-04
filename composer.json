@@ -15,7 +15,8 @@
         "ext-mbstring": "*",
         "laminas/laminas-escaper": "^2.13",
         "psr/log": "^3.0",
-        "tecnickcom/tc-lib-pdf": "^8.0"
+        "tecnickcom/tc-lib-pdf": "^6.7.5",
+        "tecnickcom/tcpdf": "^6.7"
     },
     "require-dev": {
         "codeigniter/coding-standard": "^1.7",

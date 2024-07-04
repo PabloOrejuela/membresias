@@ -1,5 +1,6 @@
 <h3>Cambios</h3>
 <ul>
+    <li>Instalado Tcpdf 6.7.5</li>
     <li>Primera subida luego de actualizar la versión del framework</li>
     <li>Mejorado el login</li>
     <li>Se implementará todo el javascrpipt en archivos separados</li>
