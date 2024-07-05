@@ -44,7 +44,7 @@ class UsuarioModel extends Model{
 
     function _getUsuario($usuario){
         $result = NULL;
-        $builder = $this->db->table('usuario');
+        $builder = $this->db->table($this->table);
         $builder->select('*')->where('user', $usuario['user'])->where('password', md5($usuario['password']));
         $builder->join('rol', 'rol.idrol=usuario.idrol');
         $query = $builder->get();
@@ -59,8 +59,8 @@ class UsuarioModel extends Model{
 
     function _getUsuarioInstructor($result = NULL){
         $result = NULL;
-        $builder = $this->db->table('usuario');
-        $builder->select('idusuario, nombre, cedula, usuario.idrol as rol');
+        $builder = $this->db->table($this->table);
+        $builder->select('idusuario, nombre, num_documento, usuario.idrol as idrol, rol.rol as rol');
         $builder->where('usuario.idrol', 2);
         $builder->join('rol', 'rol.idrol=usuario.idrol');
         $query = $builder->get();
@@ -75,7 +75,7 @@ class UsuarioModel extends Model{
 
     function _getUsuarioCedula($cedula){
         $result = NULL;
-        $builder = $this->db->table('usuario');
+        $builder = $this->db->table($this->table);
         $builder->select('idusuario');
         $builder->where('num_documento', $cedula);
         $builder->where('usuario.idrol', 2);
@@ -92,7 +92,7 @@ class UsuarioModel extends Model{
 
     function _getNameUserCedula($cedula){
         $result = NULL;
-        $builder = $this->db->table('usuario');
+        $builder = $this->db->table($this->table);
         $builder->select('nombre');
         $builder->where('num_documento', $cedula);
         //$builder->where('usuarios.idroles', 2);
@@ -101,6 +101,21 @@ class UsuarioModel extends Model{
         if ($query->getResult() != null) {
             foreach ($query->getResult() as $row) {
                 $result = $row->nombre;
+            }
+        }
+        //echo $this->db->getLastQuery();
+        return $result;
+    }
+
+    function _getDataInstructor($id){
+        $result = NULL;
+        $builder = $this->db->table($this->table);
+        $builder->select('*');
+        $builder->where('idusuario', $id);
+        $query = $builder->get();
+        if ($query->getResult() != null) {
+            foreach ($query->getResult() as $row) {
+                $result[] = $row;
             }
         }
         //echo $this->db->getLastQuery();

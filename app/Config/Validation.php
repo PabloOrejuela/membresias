@@ -126,12 +126,16 @@ class Validation extends BaseConfig
     ];
 
     public $asistenciaInstructor = [
-        'cedula'  => 'required'
+        'num_documento'  => 'required',
+        'nombre'  => 'greater_than[0]'
     ];
 
     public $asistenciaInstructor_errors = [
-        'cedula' => [
+        'num_documento' => [
             'required' => 'El campo "Cédula" es obligatorio',
+        ],
+        'nombre' => [
+            'greater_than' => 'El campo "Instructor" es obligatorio',
         ]
     ];
 

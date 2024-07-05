@@ -54,7 +54,9 @@ class Asistencia extends BaseController{
         $data['logged_in'] = $this->session->logged_in;
         $data['nombre'] = $this->session->nombre;
         $data['permisos'] = $this->rolModel->find($data['idrol']);
-        
+
+        $data['instructores'] = $this->usuarioModel->_getUsuarioInstructor();
+        //echo '<pre>'.var_export($data['instructores'], true).'</pre>';exit;
         if ($data['logged_in'] == 1) {
 
             $data['title']='Registra asistencia Instructor';
@@ -67,20 +69,17 @@ class Asistencia extends BaseController{
     }
 
     public function registraAsistenciaInstructor(){
-        $num_documento = $this->request->getPostGet('num_documento');
 
-        $idusuario = $this->usuarioModel->_getUsuarioCedula($num_documento);
+        $num_documento = $this->request->getPostGet('num_documento');
+        $id = $this->request->getPostGet('nombre');
 
         $data = [
             'num_documento' => $num_documento,
-            'idusuario' => $idusuario,
+            'idusuario' => $id,
             'fechaClase' => date('Y-m-d H:m:s'),
             'observaciones' => $this->request->getPostGet('observaciones')
         ];
 
-
-
-        //echo '<pre>'.var_export($data, true).'</pre>';exit;
         $this->validation->setRuleGroup('asistenciaInstructor');
         
         if (!$this->validation->withRequest($this->request)->run()) {
@@ -88,7 +87,9 @@ class Asistencia extends BaseController{
             //dd($validation->getErrors());
             return redirect()->back()->withInput()->with('errors', $this->validation->getErrors());
         }else{ 
-            $resp = $this->asistenciaInstructorModel->save($data);
+            
+            $resp = $this->asistenciaInstructorModel->insert($data);
+            
             if ($resp) {
 
                 $data['nombre'] = $this->session->nombre;
@@ -96,14 +97,28 @@ class Asistencia extends BaseController{
                 $data['miembros'] = $this->session->miembros;
                 $data['admin'] = $this->session->admin;
 
-                $data['title']='Registro exitoso';
-                $data['main_content']='asistencias/exito_asistencia_view';
-                return view('includes/template', $data);
-            }
+                $this->session->setFlashdata('mensaje', $data);
+                //$this->logout();
+                return redirect()->back()->with(
+                    'mensaje', 
+                    'exito');
 
-            return redirect()->to('/');
+                //return redirect()->to('registra-asistencia-instructor');
+            }else{
+                $this->session->setFlashdata('mensaje', $data);
+                //$this->logout();
+                return redirect()->back()->with(
+                    'mensaje', 
+                    'error');
+
+                return redirect()->to('/');
+            }
         }     
     }
 
-
+    public function getInstructor(){
+        $id = $this->request->getPostGet('id');
+        $instructor = $this->usuarioModel->_getDataInstructor($id);
+        echo json_encode($instructor);
+    }
 }

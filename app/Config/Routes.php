@@ -54,5 +54,6 @@ $routes->group('reportes', static function ($routes) {
 $routes->post('genera_reporte_asistencia_instructor', 'Reportes::genera_reporte_asistencia_instructor');
 
 $routes->get('registra-asistencia-instructor', 'Asistencia::FrmRegistraAsistenciaInstructor');
+$routes->get('get-instructor', 'Asistencia::getInstructor');
 $routes->post('registra_aistencia_instructor', 'Asistencia::registraAsistenciaInstructor');
 

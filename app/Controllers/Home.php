@@ -8,7 +8,7 @@ class Home extends BaseController {
 
         $data['title']='Lista de membresías';
         $data['main_content']='membresias/membresias_view';
-        return view('includes/template', $data);
+        //return view('includes/template', $data);
         return view('home/inicio_view');
     }
 }
