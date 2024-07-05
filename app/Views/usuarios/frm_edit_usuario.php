@@ -61,7 +61,7 @@
                             </div>
                             <p>'.session('errors.idroles').'</p>';
                             }
-                            echo form_hidden('idusuarios', $usuario->idusuarios);
+                            echo form_hidden('idusuarios', $usuario->idusuario);
                     ?>
                     
                     <input type="submit" name="submit" value="Guardar" class="btn btn-outline-info" />
