@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="<?= site_url(); ?>public/css/membresias_view.css">
 <div id="layoutSidenav_content">
     <main>
         <div class="container-fluid px-4">
@@ -45,70 +46,70 @@
                             echo '<tr>
                                     <td>'.$value->nombre.'</td>
                                     <td>'.$value->num_documento.'</td>
-                                    <td>'.$value->idpaquete.'</td>
+                                    <td>'.$value->paquete.'</td>
                                     <td>'.$value->fecha_inicio.'</td>
                                     <td>'.$value->fecha_final.'</td>
                                     <td>'.date("Y-m-d").'</td>'; //FECHA ACTUAL
 
                             //DIAS
-                            echo '<td style="text-align:center;">'.$value->dias.'</td>';
-                                    //echo $value->tipo;
+                            echo '<td id="td-center">'.$value->dias.'</td>';
+                                    
                             if ($value->tipo == 1) {
                                 $saldo = $diferenciaDias;
                                 //echo $saldo;echo '<pre>'.var_export($saldo, true).'</pre>';
                                 if ($saldo <= ($value->asistencias /3) ){
-                                    echo '<td style="text-align:center;color:red;">'.number_format($diferenciaDias,0).'</td>';
+                                    echo '<td id="td-center-red">'.number_format($diferenciaDias,0).'</td>';
                                 }else{
-                                    echo '<td style="text-align:center;">'.number_format($diferenciaDias,0).'</td>';
+                                    echo '<td id="td-center">'.number_format($diferenciaDias,0).'</td>';
                                 }
                                 //ENTRADAS
-                                echo '<td style="text-align:center;">'.$value->entradas.'</td>'; 
+                                echo '<td id="td-center">'.$value->entradas.'</td>'; 
                                 //Dias disponibles
-                                echo '<td style="text-align:center;">'.number_format($saldo,0).'</td>'; 
+                                echo '<td id="td-center">'.number_format($saldo,0).'</td>'; 
                                 
                                 if ($value->status == 1 && $saldo > 0) {
                                     echo '<td>ACTIVA</td><td></td>
-                                        <td style="text-align:center;">
+                                        <td id="td-center">
                                         <a type="button" id="btn-register" href="edit/'.$value->idmembresias.'" class="edit">
                                             <img src="'.site_url().'public/img/buttons/edit.png" >
                                         </a>
                                     </td>';
                                 }else{
-                                    echo '<td>CADUCADA</td>
-                                        <td style="text-align:center;">
-                                        <a type="button" id="btn-register" href="edit/'.$value->idmembresias.'" class="edit">
-                                            <img src="'.site_url().'public/img/buttons/edit.png" >
-                                        </a>
-                                    </td>';
+                                    echo '<td id="td-center">CADUCADA</td>';
+                                    echo '<td id="td-center">
+                                            <a type="button" id="btn-register" href="edit/'.$value->idmembresias.'" class="edit">
+                                                <img src="'.site_url().'public/img/buttons/edit.png" >
+                                            </a>
+                                        </td>';
                                 }
                                 
                             }else{
                                 $saldo = $value->entradas - $value->asistencias;
                                 if ($saldo <= ($value->asistencias /3) ){
-                                    echo '<td style="text-align:center;color:red;">'.$diferenciaDias.'</td>';
+                                    echo '<td >'.$diferenciaDias.'</td>';
                                 }else{
-                                    echo '<td style="text-align:center;">'.$diferenciaDias.'</td>';
+                                    echo '<td id="td-center">'.$diferenciaDias.'</td>';
                                 }
                                 //ENTRADAS
-                                echo '<td style="text-align:center;">'.$value->entradas.'</td>'; 
+                                echo '<td id="td-center">'.$value->entradas.'</td>'; 
                                 //Dias disponibles
-                                echo '<td style="text-align:center;">'.$saldo.'</td>';
+                                echo '<td id="td-center">'.$saldo.'</td>';
                                 if ($value->status == 1 && $saldo > 0) {
-                                    echo '<td>ACTIVA</td>';
-                                    echo '<td style="text-align:center;">
+                                    echo '<td id="td-center">ACTIVA</td>';
+                                    echo '<td id="td-center">
                                             <a type="button" id="btn-register" href="asistencia/'.$value->idmembresias.'" 
                                                 class="registro" data-bs-toggle="modal" data-bs-target="#asistenciaModal" 
                                                 onClick="pasaIdmembresia('.$value->idmembresias.','. $saldo.');">Asistencia
                                             </a>
                                         </td>
-                                    <td style="text-align:center;">
+                                    <td id="td-center">
                                         <a type="button" id="btn-register" href="edit/'.$value->idmembresias.'" class="edit">
                                             <img src="'.site_url().'public/img/buttons/edit.png" >
                                         </a>
                                     </td>';
                                 }else{
-                                    echo '<td style="text-align:center;">CADUCADA</td><td></td>
-                                    <td style="text-align:center;">
+                                    echo '<td id="td-center-red">CADUCADA</td><td></td>
+                                    <td id="td-center">
                                         <a type="button" id="btn-register" href="edit/'.$value->idmembresias.'" class="edit">
                                             <img src="'.site_url().'public/img/buttons/edit.png" >
                                         </a>
