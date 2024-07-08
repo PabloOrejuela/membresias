@@ -5,13 +5,19 @@ use CodeIgniter\I18n\Time;
 
 class Membresia extends BaseController{
 
-    public function index(){
-
+    public function acl() {
         $data['idrol'] = $this->session->idrol;
         $data['idusuario'] = $this->session->idusuario;
         $data['logged_in'] = $this->session->logged_in;
         $data['nombre'] = $this->session->nombre;
         $data['permisos'] = $this->rolModel->find($data['idrol']);
+
+        return $data;
+    }
+
+    public function index(){
+
+        $data = $this->acl();
         
         if ($data['logged_in'] == 1) {
 
@@ -34,11 +40,8 @@ class Membresia extends BaseController{
     }
 
     public function edit($idmembresias){
-        $data['idrol'] = $this->session->idrol;
-        $data['idusuario'] = $this->session->idusuario;
-        $data['logged_in'] = $this->session->logged_in;
-        $data['nombre'] = $this->session->nombre;
-        $data['permisos'] = $this->rolModel->find($data['idrol']);
+
+        $data = $this->acl();
         
         if ($data['logged_in'] == 1) {
             $data['membresia'] = $this->membresiasModel->_getMembresia($idmembresias);
@@ -85,11 +88,7 @@ class Membresia extends BaseController{
       */
      public function frm_select_transfer(){
 
-        $data['idrol'] = $this->session->idrol;
-        $data['idusuario'] = $this->session->idusuario;
-        $data['logged_in'] = $this->session->logged_in;
-        $data['nombre'] = $this->session->nombre;
-        $data['permisos'] = $this->rolModel->find($data['idrol']);
+        $data = $this->acl();
         
         if ($data['logged_in'] == 1) {
 
@@ -110,11 +109,8 @@ class Membresia extends BaseController{
       * Frm para selecccionar el miembro al que se le desea transferir la membresía
       */
       public function fr_select_member_transfer_membership($idmembresias){
-        $data['idrol'] = $this->session->idrol;
-        $data['idusuario'] = $this->session->idusuario;
-        $data['logged_in'] = $this->session->logged_in;
-        $data['nombre'] = $this->session->nombre;
-        $data['permisos'] = $this->rolModel->find($data['idrol']);
+
+        $data = $this->acl();
         
         if ($data['logged_in'] == 1) {
             
@@ -136,7 +132,6 @@ class Membresia extends BaseController{
       */
       public function transfer_membership(){
 
-        
         $data = [
             'idmembresias' => $this->request->getPostGet('idmembresias'),
             'idmiembros' => $this->request->getPostGet('idmiembros'),
@@ -144,7 +139,9 @@ class Membresia extends BaseController{
             'idtipomovimiento' => 1, //TRANSFERENCIA
             'idusuario' => $this->session->idusuario
         ];
+
         $this->validation->setRuleGroup('transfiere_membresia');
+
         if (!$this->validation->withRequest($this->request)->run()) {
             //Depuración
             //dd($validation->getErrors());
@@ -162,11 +159,8 @@ class Membresia extends BaseController{
     }
 
     public function frm_asigna_membresia_miembro(){
-        $data['idrol'] = $this->session->idrol;
-        $data['idusuario'] = $this->session->idusuario;
-        $data['logged_in'] = $this->session->logged_in;
-        $data['nombre'] = $this->session->nombre;
-        $data['permisos'] = $this->rolModel->find($data['idrol']);
+
+        $data = $this->acl();
         
         if ($data['logged_in'] == 1) {
             
@@ -182,11 +176,8 @@ class Membresia extends BaseController{
     }
 
     public function asigna_membresia_miembro($idmiembros){
-        $data['idrol'] = $this->session->idrol;
-        $data['idusuario'] = $this->session->idusuario;
-        $data['logged_in'] = $this->session->logged_in;
-        $data['nombre'] = $this->session->nombre;
-        $data['permisos'] = $this->rolModel->find($data['idrol']);
+        
+        $data = $this->acl();
         
         if ($data['logged_in'] == 1) {
             
@@ -253,5 +244,4 @@ class Membresia extends BaseController{
             return redirect()->to('membresias');
         }
     }
-     
 }

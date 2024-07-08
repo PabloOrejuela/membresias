@@ -5,6 +5,16 @@ namespace App\Controllers;
 use App\Controllers\BaseController;
 class Usuarios extends BaseController {
 
+    public function acl() {
+        $data['idrol'] = $this->session->idrol;
+        $data['idusuario'] = $this->session->idusuario;
+        $data['logged_in'] = $this->session->logged_in;
+        $data['nombre'] = $this->session->nombre;
+        $data['permisos'] = $this->rolModel->find($data['idrol']);
+
+        return $data;
+    }
+
     public function index() {
 
         //$data['version'] = $this->CI_VERSION;
@@ -65,11 +75,7 @@ class Usuarios extends BaseController {
 
     public function inicio(){
 
-        $data['idrol'] = $this->session->idrol;
-        $data['idusuario'] = $this->session->idusuario;
-        $data['logged_in'] = $this->session->logged_in;
-        $data['nombre'] = $this->session->nombre;
-        $data['permisos'] = $this->rolModel->find($data['idrol']);
+        $data = $this->acl();
         
         if ($data['logged_in'] == 1) {
 
@@ -87,11 +93,7 @@ class Usuarios extends BaseController {
     }
 
     public function showUsuarios($data = NULL){
-        $data['idrol'] = $this->session->idrol;
-        $data['idusuario'] = $this->session->idusuario;
-        $data['logged_in'] = $this->session->logged_in;
-        $data['nombre'] = $this->session->nombre;
-        $data['permisos'] = $this->rolModel->find($data['idrol']);
+        $data = $this->acl();
         
         if ($data['logged_in'] == 1) {
             $data['usuarios'] = $this->usuarioModel->findAll();
@@ -105,11 +107,7 @@ class Usuarios extends BaseController {
     }
 
     public function editar($idusuario){
-        $data['idrol'] = $this->session->idrol;
-        $data['idusuario'] = $this->session->idusuario;
-        $data['logged_in'] = $this->session->logged_in;
-        $data['nombre'] = $this->session->nombre;
-        $data['permisos'] = $this->rolModel->find($data['idrol']);
+        $data = $this->acl();
         
         if ($data['logged_in'] == 1) {
             
@@ -168,11 +166,7 @@ class Usuarios extends BaseController {
     }
 
     public function nuevo($data = NULL){
-        $data['idrol'] = $this->session->idrol;
-        $data['idusuario'] = $this->session->idusuario;
-        $data['logged_in'] = $this->session->logged_in;
-        $data['nombre'] = $this->session->nombre;
-        $data['permisos'] = $this->rolModel->find($data['idrol']);
+        $data = $this->acl();
         
         if ($data['logged_in'] == 1) {
             $data['roles'] = $this->rolModel->findAll();
@@ -220,7 +214,6 @@ class Usuarios extends BaseController {
         ];
 
         //echo '<pre>'.var_export($data, true).'</pre>';
-        
 
         $nombre = $this->usuarioModel->_getNameUserCedula($cedula);
         //$this->membresiasModel->_update_status_all($data['membresias']);
@@ -247,5 +240,4 @@ class Usuarios extends BaseController {
         $this->session->destroy();
         return redirect()->to('/');
     }
-    
 }

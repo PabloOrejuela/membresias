@@ -17,5 +17,4 @@ class Paquetes extends BaseController{
 
         return $data;
     }
-
 }

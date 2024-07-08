@@ -4,12 +4,19 @@ namespace App\Controllers;
 
 class Miembros extends BaseController{
 
-    public function index(){
+    public function acl() {
         $data['idrol'] = $this->session->idrol;
         $data['idusuario'] = $this->session->idusuario;
         $data['logged_in'] = $this->session->logged_in;
         $data['nombre'] = $this->session->nombre;
         $data['permisos'] = $this->rolModel->find($data['idrol']);
+
+        return $data;
+    }
+
+    public function index(){
+
+        $data = $this->acl();
         
         if ($data['logged_in'] == 1) {
             $data['miembrosList'] = $this->miembrosModel->_getMiembros();
@@ -27,11 +34,7 @@ class Miembros extends BaseController{
     }
     
     public function nuevo($data = NULL){
-        $data['idrol'] = $this->session->idrol;
-        $data['idusuario'] = $this->session->idusuario;
-        $data['logged_in'] = $this->session->logged_in;
-        $data['nombre'] = $this->session->nombre;
-        $data['permisos'] = $this->rolModel->find($data['idrol']);
+        $data = $this->acl();
         
         if ($data['logged_in'] == 1) {
 
@@ -94,11 +97,7 @@ class Miembros extends BaseController{
     }
 
     public function editar($idmiembros){
-        $data['idrol'] = $this->session->idrol;
-        $data['idusuario'] = $this->session->idusuario;
-        $data['logged_in'] = $this->session->logged_in;
-        $data['nombre'] = $this->session->nombre;
-        $data['permisos'] = $this->rolModel->find($data['idrol']);
+        $data = $this->acl();
         
         if ($data['logged_in'] == 1) {
             

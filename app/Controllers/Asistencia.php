@@ -4,6 +4,16 @@ namespace App\Controllers;
 
 class Asistencia extends BaseController{
 
+    public function acl() {
+        $data['idrol'] = $this->session->idrol;
+        $data['idusuario'] = $this->session->idusuario;
+        $data['logged_in'] = $this->session->logged_in;
+        $data['nombre'] = $this->session->nombre;
+        $data['permisos'] = $this->rolModel->find($data['idrol']);
+
+        return $data;
+    }
+
     
     /**
      * undocumented function summary
@@ -23,7 +33,6 @@ class Asistencia extends BaseController{
 
         //echo '<pre>'.var_export($data, true).'</pre>';
         
-
         $this->asistenciaModel->_insert_asistencia($data);
         //$this->membresiasModel->_update_status_all($data['membresias']);
         
@@ -31,11 +40,8 @@ class Asistencia extends BaseController{
     }
 
     public function exitoAsistencia(){
-        $data['idrol'] = $this->session->idrol;
-        $data['idusuario'] = $this->session->idusuario;
-        $data['logged_in'] = $this->session->logged_in;
-        $data['nombre'] = $this->session->nombre;
-        $data['permisos'] = $this->rolModel->find($data['idrol']);
+        
+        $data = $this->acl();
         
         if ($data['logged_in'] == 1) {
 
@@ -49,11 +55,7 @@ class Asistencia extends BaseController{
 
     public function FrmRegistraAsistenciaInstructor(){
 
-        $data['idrol'] = $this->session->idrol;
-        $data['idusuario'] = $this->session->idusuario;
-        $data['logged_in'] = $this->session->logged_in;
-        $data['nombre'] = $this->session->nombre;
-        $data['permisos'] = $this->rolModel->find($data['idrol']);
+        $data = $this->acl();
 
         $data['instructores'] = $this->usuarioModel->_getUsuarioInstructor();
         //echo '<pre>'.var_export($data['instructores'], true).'</pre>';exit;

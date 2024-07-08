@@ -6,13 +6,19 @@ use TCPDF;
 
 class Reportes extends BaseController{
 
-
-    public function index(){
+    public function acl() {
         $data['idrol'] = $this->session->idrol;
         $data['idusuario'] = $this->session->idusuario;
         $data['logged_in'] = $this->session->logged_in;
         $data['nombre'] = $this->session->nombre;
         $data['permisos'] = $this->rolModel->find($data['idrol']);
+
+        return $data;
+    }
+
+
+    public function index(){
+        $data = $this->acl();
         
         if ($data['logged_in'] == 1) {
 
@@ -25,11 +31,7 @@ class Reportes extends BaseController{
     }
 
     public function lista_movimientos(){
-        $data['idrol'] = $this->session->idrol;
-        $data['idusuario'] = $this->session->idusuario;
-        $data['logged_in'] = $this->session->logged_in;
-        $data['nombre'] = $this->session->nombre;
-        $data['permisos'] = $this->rolModel->find($data['idrol']);
+        $data = $this->acl();
         
         if ($data['logged_in'] == 1) {
 
@@ -44,11 +46,7 @@ class Reportes extends BaseController{
     }
 
     public function frm_selecciona_instructor(){
-        $data['idrol'] = $this->session->idrol;
-        $data['idusuario'] = $this->session->idusuario;
-        $data['logged_in'] = $this->session->logged_in;
-        $data['nombre'] = $this->session->nombre;
-        $data['permisos'] = $this->rolModel->find($data['idrol']);
+        $data = $this->acl();
         
         if ($data['logged_in'] == 1) {
 
