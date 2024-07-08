@@ -39,33 +39,5 @@
             </div>
         </div>
     </main>
-
-    <script>
-        // @ts-nocheck
-        $('#datatablesSimple').DataTable( {
-            paging: true ,
-            "lengthMenu": [ 3 ],
-            language: {
-                processing:     "Procesamiento en curso...",
-                search:         "Buscar:",
-                lengthMenu:     "Listar _MENU_ filas",
-                info:           "_START_ al _END_ de _TOTAL_ registros",
-                infoEmpty:      "0 a 0 de 0 registros",
-                infoFiltered:   "",
-                infoPostFix:    "",
-                loadingRecords: "Cargando...",
-                zeroRecords:    "No hay registros para mostrar",
-                emptyTable:     "Mo hay registros que coicidan",
-                paginate: {
-                    first:      "Primero",
-                    previous:   "Anterior",
-                    next:       "Siguiente",
-                    last:       "Último"
-                },
-                aria: {
-                    sortAscending:  ": activar para ordenar la columna de manera ascendente",
-                    sortDescending: ": activar para ordenar la columna de manera descendente"
-                }
-            }
-        } );
-    </script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="<?= site_url(); ?>public/js/lista_usuarios.js"></script>

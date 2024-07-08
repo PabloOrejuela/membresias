@@ -51,7 +51,7 @@
                             <p id="error-message"><?= session('errors.idpaquete');?> </p>
                         </div>
                         </br>
-                        <h4>Información de repersentante (en caso de que sea menor de edad)</h4>
+                        <h4>Información de representante (en caso de que sea menor de edad)</h4>
                         <div class="mb-3 col-md-4">
                             <label for="representante" class="form-label">Representante:</label>
                             <input type="text" class="form-control" name="representante" id="representante" value="<?= old('representante'); ?>" placeholder="representante">

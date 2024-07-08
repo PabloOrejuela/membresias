@@ -41,7 +41,7 @@ class MembresiasModel extends Model{
     function _getMembresias($result = NULL){
         
         $db = \Config\Database::connect();
-        $builder = $db->table('membresias');
+        $builder = $db->table($this->table);
         $builder->select('*');
         $builder->join('miembros', 'miembros.idmiembros = membresias.idmiembros');
         $builder->join('paquetes', 'paquetes.idpaquete = membresias.idpaquete');
@@ -61,7 +61,7 @@ class MembresiasModel extends Model{
      */
     function _update_status_all($membresias){
         //echo '<pre>'.var_export($membresias, true).'</pre>'; exit;
-        $builder = $this->db->table('membresias');
+        $builder = $this->db->table($this->table);
         
         foreach ($membresias as $row) {
             if ($row->tipo == 1) {
@@ -107,7 +107,7 @@ class MembresiasModel extends Model{
      */
     function _getMembresia($idmembresias){
         $result = null;
-        $builder = $this->db->table('membresias');
+        $builder = $this->db->table($this->table);
         $builder->select('*');
         $builder->join('miembros', 'miembros.idmiembros = membresias.idmiembros');
         $builder->join('paquetes', 'paquetes.idpaquete = membresias.idpaquete');
@@ -140,8 +140,8 @@ class MembresiasModel extends Model{
     function _get_total_asistencias($object){
         //echo '<pre>'.var_export($object, true).'</pre>';
         $result = 0;
-        $builder = $this->db->table('asistencia');
-        $builder->selectSum('num_asistencias', 'total');
+        $builder = $this->db->table($this->table);
+        $builder->selectSum('asistencias', 'total');
         $builder->where('idmembresias', $object->idmembresias);
         $builder->where('updated_at >=', $object->fecha_inicio)->where('updated_at <=', $object->fecha_final);
         //$builder->join('membresias', 'membresias.idmembresias=asistencia.idmembresias');
@@ -159,7 +159,7 @@ class MembresiasModel extends Model{
      */
     function _update_asistencias_membresia($data){
         //echo '<pre>'.var_export($data, true).'</pre>';
-        $builder = $this->db->table('membresias');
+        $builder = $this->db->table($this->table);
         $builder->set('asistencias', $data->num_asistencias);
         $builder->where('idmembresias', $data->idmembresias);
         $builder->update();
@@ -171,10 +171,9 @@ class MembresiasModel extends Model{
     function _update_fecha_final_membresia($data){
         $this->db->transStart();
         //echo '<pre>'.var_export($data, true).'</pre>';
-        $builder = $this->db->table('membresias');
+        $builder = $this->db->table($this->table);
         $builder->set('status', 1);
         $builder->set('fecha_final',  $data['fecha_final']);
-
         $builder->where('idmembresias', $data['idmembresias']);
         $builder->update();
 
@@ -190,7 +189,7 @@ class MembresiasModel extends Model{
 
     function _insert_movimiento($data){
         //echo '<pre>'.var_export($data, true).'</pre>';exit;
-        $builder = $this->db->table('movimientos');
+        $builder = $this->db->table($this->table);
         $builder->set('idtipomovimiento', $data['idtipomovimiento']);
         $builder->set('observacion', $data['observacion']);
         $builder->set('idmiembros', $data['idmiembros']);
@@ -207,7 +206,7 @@ class MembresiasModel extends Model{
     function _transfiere_membresia($data){
         //echo '<pre>'.var_export($data, true).'</pre>';exit;
         $this->db->transStart();
-        $builder = $this->db->table('membresias');
+        $builder = $this->db->table($this->table);
         $builder->set('idmiembros', $data['idmiembros']);
         $builder->where('idmembresias', $data['idmembresias']);
         $builder->update();
@@ -221,5 +220,4 @@ class MembresiasModel extends Model{
             return 1;
         }
     }
-    
 }

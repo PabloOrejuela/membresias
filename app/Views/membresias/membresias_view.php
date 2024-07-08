@@ -82,7 +82,12 @@
                                 
                                 if ($value->status == 1 && $saldo > 0) {
                                     echo '<td id="td-center">ACTIVA</td>';
-                                    echo '<td></td>';
+                                    echo '<td id="td-center">
+                                            <a type="button" id="btn-register" href="asistencia/'.$value->idmembresias.'" 
+                                                class="registro" data-bs-toggle="modal" data-bs-target="#asistenciaModal" 
+                                                onClick="pasaIdmembresia('.$value->idmembresias.','. $saldo.');"><i class="fa-solid fa-dumbbell"></i> Asistencia
+                                            </a>
+                                        </td>';
                                     echo '<td id="td-center">
                                             <a type="button" id="btn-register" href="edit/'.$value->idmembresias.'" class="edit">
                                                 <img src="'.site_url().'public/img/buttons/edit.png" >
@@ -107,8 +112,11 @@
                                 }
                                 //ENTRADAS
                                 echo '<td id="td-center">'.$value->entradas.'</td>'; 
+
                                 //Dias disponibles
                                 echo '<td id="td-center">'.$saldo.'</td>';
+
+                                //Estado
                                 if ($value->status == 1 && $saldo > 0) {
                                     echo '<td id="td-center">ACTIVA</td>';
                                     echo '<td id="td-center">
@@ -132,8 +140,6 @@
                                         </td>';
                                 }
                             }
-                            
-                        
                             echo  '</tr>';
                         }
                     ?>
@@ -213,42 +219,6 @@
         });
         
     }
-
-    $(document).ready(function () {
-        $.fn.DataTable.ext.classes.sFilterInput = "form-control form-control-sm search-input";
-        $('#datatablesSimple').DataTable({
-            "responsive": true, 
-            "order": [[1, 'asc']],
-            lengthMenu: [
-                [25, 50, -1],
-                [25, 50, 'Todos']
-            ],
-            language: {
-                processing: 'Procesando...',
-                lengthMenu: 'Mostrando _MENU_ registros por página',
-                zeroRecords: 'No hay registros',
-                info: 'Mostrando _START_ a _END_ de _MAX_',
-                infoEmpty: 'No hay registros disponibles',
-                infoFiltered: '(filtrando de _MAX_ total registros)',
-                search: 'Buscar',
-                paginate: {
-                first:      "Primero",
-                previous:   "Anterior",
-                next:       "Siguiente",
-                last:       "Último"
-                    },
-                    aria: {
-                        sortAscending:  ": activar para ordenar ascendentemente",
-                        sortDescending: ": activar para ordenar descendentemente"
-                    }
-            },
-            //"lengthChange": false, 
-            "autoWidth": false,
-            "dom": "<'row'<'col-sm-12 col-md-8'l><'col-md-12 col-md-2'f>>" +
-                    "<'row'<'col-sm-12'tr>>" +
-                    "<'row'<'col-sm-12 col-md-6'i><'col-sm-12 col-md-6'p>>"
-        });
-    });
 </script>
 <script type="text/javascript">
     /*function actualizar(){

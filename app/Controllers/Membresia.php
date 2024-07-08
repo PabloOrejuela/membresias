@@ -40,12 +40,13 @@ class Membresia extends BaseController{
     }
 
     public function edit($idmembresias){
-
+        
         $data = $this->acl();
         
         if ($data['logged_in'] == 1) {
+            
             $data['membresia'] = $this->membresiasModel->_getMembresia($idmembresias);
-            //echo '<pre>'.var_export($data['membresia'], true).'</pre>';
+            //echo '<pre>'.var_export($data['membresia'], true).'</pre>';exit;
 
             $data['title']='Edición de membresías';
             $data['main_content']='membresias/frm_edit_membresias_view';
@@ -76,7 +77,7 @@ class Membresia extends BaseController{
         //$diff = $fecha_inicio->difference($fecha_final);
         //$data['total']= date("Y-m-d",strtotime($fecha_inicio."+ ".$paquete->dias." days")); 
         
-        //echo '<pre>'.var_export($data['total'], true).'</pre>';
+        // echo '<pre>'.var_export($data, true).'</pre>';exit;
         $lastQuery = $this->membresiasModel->_update_fecha_final_membresia($data);
         
         return redirect()->to('membresias');

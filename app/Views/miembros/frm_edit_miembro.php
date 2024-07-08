@@ -55,7 +55,7 @@
                                     <input type="email" class="form-control" name="email" id="email" value="'.$datos->email.'" required placeholder="jdoe@email.com">
                                 </div>
                                 </br>
-                                <h4>Información de repersentante (en caso de que sea menor de edad)</h4>
+                                <h4>Información de representante (en caso de que sea menor de edad)</h4>
                                 <div class="mb-3 col-md-4">
                                     <label for="representante" class="form-label">Representante:</label>
                                     <input 

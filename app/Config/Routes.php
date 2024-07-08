@@ -40,7 +40,7 @@ $routes->get('edita_datos_miembro/(:num)', 'Miembros::editar/$1');
 $routes->get('membresias', 'Membresia::index');
 $routes->get('asigna_membresia_miembro/(:num)', 'Membresia::asigna_membresia_miembro/$1');
 $routes->post('asign_membresia', 'Membresia::asign_membresia');
-$routes->get('edit/(:num)', 'Membresia::edit/$1', ['as' => 'editar-membresia']);
+$routes->get('edit/(:num)', 'Membresia::edit/$1');
 $routes->post('update_date', 'Membresia::update_date');
 $routes->post('miembros_select', 'Membresia::miembros_select');
 $routes->get('transfer', 'Membresia::frm_select_transfer');
