@@ -88,8 +88,6 @@ class Miembros extends BaseController{
         
     }
 
-    
-
     public function editar($idmiembros){
         $data['idrol'] = $this->session->idrol;
         $data['idusuario'] = $this->session->idusuario;

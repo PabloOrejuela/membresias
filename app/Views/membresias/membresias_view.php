@@ -1,3 +1,4 @@
+
 <link rel="stylesheet" href="<?= site_url(); ?>public/css/membresias_view.css">
 <div id="layoutSidenav_content">
     <main>
@@ -38,9 +39,13 @@
 
                             $diferenciaSegundos = strtotime($fecha_final) - strtotime($fechaActual);
                             $diferenciaDias = ($diferenciaSegundos / 86400);
+
+                            //En caso de que haya vencido el período
+                            if ($diferenciaDias < 0) {
+                                $diferenciaDias = 0;
+                            }
                             
                             $dias_disponibles = $value->dias - $diferenciaDias;
-
                             
                             //$saldo = $value->total - $value->asistencias;
                             echo '<tr>
@@ -56,26 +61,37 @@
                                     
                             if ($value->tipo == 1) {
                                 $saldo = $diferenciaDias;
-                                //echo $saldo;echo '<pre>'.var_export($saldo, true).'</pre>';
+                                
+                                //Dias disponibles (
                                 if ($saldo <= ($value->asistencias /3) ){
-                                    echo '<td id="td-center-red">'.number_format($diferenciaDias,0).'</td>';
+                                    echo '<td id="td-center">'.number_format($diferenciaDias,0).'</td>';
                                 }else{
                                     echo '<td id="td-center">'.number_format($diferenciaDias,0).'</td>';
                                 }
+
+
                                 //ENTRADAS
                                 echo '<td id="td-center">'.$value->entradas.'</td>'; 
-                                //Dias disponibles
-                                echo '<td id="td-center">'.number_format($saldo,0).'</td>'; 
+
+                                //Entradas disponibles)
+                                if ($saldo > 0) {
+                                    echo '<td id="td-center">'.number_format($saldo,0).'</td>'; 
+                                } else {
+                                    echo '<td id="td-center">0</td>'; 
+                                }
+                                
                                 
                                 if ($value->status == 1 && $saldo > 0) {
-                                    echo '<td>ACTIVA</td><td></td>
-                                        <td id="td-center">
-                                        <a type="button" id="btn-register" href="edit/'.$value->idmembresias.'" class="edit">
-                                            <img src="'.site_url().'public/img/buttons/edit.png" >
-                                        </a>
-                                    </td>';
+                                    echo '<td id="td-center">ACTIVA</td>';
+                                    echo '<td></td>';
+                                    echo '<td id="td-center">
+                                            <a type="button" id="btn-register" href="edit/'.$value->idmembresias.'" class="edit">
+                                                <img src="'.site_url().'public/img/buttons/edit.png" >
+                                            </a>
+                                        </td>';
                                 }else{
                                     echo '<td id="td-center">CADUCADA</td>';
+                                    echo '<td></td>';
                                     echo '<td id="td-center">
                                             <a type="button" id="btn-register" href="edit/'.$value->idmembresias.'" class="edit">
                                                 <img src="'.site_url().'public/img/buttons/edit.png" >
@@ -102,18 +118,19 @@
                                                 onClick="pasaIdmembresia('.$value->idmembresias.','. $saldo.');">Asistencia
                                             </a>
                                         </td>
-                                    <td id="td-center">
-                                        <a type="button" id="btn-register" href="edit/'.$value->idmembresias.'" class="edit">
-                                            <img src="'.site_url().'public/img/buttons/edit.png" >
-                                        </a>
-                                    </td>';
+                                        <td id="td-center">
+                                            <a type="button" id="btn-register" href="edit/'.$value->idmembresias.'" class="edit">
+                                                <img src="'.site_url().'public/img/buttons/edit.png" >
+                                            </a>
+                                        </td>';
                                 }else{
-                                    echo '<td id="td-center-red">CADUCADA</td><td></td>
-                                    <td id="td-center">
-                                        <a type="button" id="btn-register" href="edit/'.$value->idmembresias.'" class="edit">
-                                            <img src="'.site_url().'public/img/buttons/edit.png" >
-                                        </a>
-                                    </td>';
+                                    echo '<td id="td-center-red">CADUCADA</td>';
+                                    echo '<td></td>';
+                                    echo '<td id="td-center">
+                                            <a type="button" id="btn-register" href="edit/'.$value->idmembresias.'" class="edit">
+                                                <img src="'.site_url().'public/img/buttons/edit.png" >
+                                            </a>
+                                        </td>';
                                 }
                             }
                             
@@ -160,6 +177,8 @@
     </div>
   </div>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="<?= site_url(); ?>public/js/membresias_view.js"></script>
 <script>
     function pasaIdmembresia(idmembresias, entradas){
         $('#idmembresias').val(idmembresias);

@@ -7,15 +7,20 @@
         <meta name="description" content="" />
         <meta name="author" content="" />
         <title>Miembros</title>
-        <link href="<?= site_url(); ?>public/css/datatables.css" rel="stylesheet" />
-        <link href="<?= site_url(); ?>public/css/styles.css" rel="stylesheet" />
 
-        <script src="<?= site_url(); ?>public/js/libraries/font-awesome.js"></script>
-        <script src="<?= site_url(); ?>public/js/jquery-3.6.0.min.js" ></script>
-        <script src="<?= site_url(); ?>public/js/libraries/bootstrap.bundle.min.js" ></script>
+        <link href="<?= site_url(); ?>public/css/styles.css" rel="stylesheet" />
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+        
+        <script src="https://kit.fontawesome.com/90e597c088.js" crossorigin="anonymous"></script>
+
+        <!-- DataTables -->
+        <link rel="stylesheet" href="<?= site_url(); ?>public/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css"> 
+        <link rel="stylesheet" href="<?= site_url(); ?>public/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+        <link rel="stylesheet" href="<?= site_url(); ?>public/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
         <script src="<?= site_url(); ?>public/js/scripts.js"></script>
-        <script src="<?= site_url(); ?>public/js/libraries/simple-datatables@latest.js" crossorigin="anonymous"></script>
-        <script src="<?= site_url(); ?>public/js/libraries/datatables-simple-demo.js"></script>
         <script src="<?= site_url(); ?>public/js/ajax.js"></script>
     </head>
     <body class="sb-nav-fixed" onload="mueveReloj()" >

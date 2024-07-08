@@ -1,10 +1,9 @@
 <h3>Cambios</h3>
 <ul>
-    <li>Centrado el estado en el grid de membresías</li>
+    <li>La lista de membresías ya es datatable</li>
 </ul>
 </br>
 <h3>Correcciones</h3>
 <ul>
-    <li>Corregido error que no mostraba el paquete en el grid de membresías</li>
-    <li>Corregido error que impedía que se muestre el form de editar usuario</li>
+    <li>Corregido el error que no calculaba bien la diferencia de días y salían días negativos</li>
 </ul>
