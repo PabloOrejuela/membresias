@@ -38,6 +38,14 @@
                                 <div class="mb-3">
                                     <label for="email" class="form-label">Email:</label>
                                     <input type="email" class="form-control" name="email" id="email" value="'.$datos->email.'" required placeholder="jdoe@email.com">
+                                </div>
+                                <div class="mb-3 col-md-4">
+                                    <label for="representante" class="form-label">Representante:</label>
+                                    <input type="text" class="form-control" name="representante" id="representante" value="'.$datos->representante.'" placeholder="representante">
+                                </div>
+                                <div class="mb-3 col-md-8">
+                                    <label for="telf_representante" class="form-label">Teléfono representante:</label>
+                                    <input type="text" class="form-control" name="telf_representante" maxlength="10" id="telf_representante" value="'.$datos->telf_representante.'" placeholder="teléfono representante">
                                 </div>';
                             }
                             echo form_hidden('idmiembros', $datos->idmiembros);
