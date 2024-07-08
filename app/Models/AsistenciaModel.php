@@ -7,9 +7,7 @@ use CodeIgniter\Model;
 class AsistenciaModel extends Model{
     protected $table      = 'asistencia';
     protected $primaryKey = 'idasistencia';
-
     protected $useAutoIncrement = true;
-
     protected $returnType     = 'object';
     protected $useSoftDeletes = false;
 

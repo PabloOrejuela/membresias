@@ -31,9 +31,9 @@ class Asistencia extends BaseController{
             'codigos_multipases' => $this->request->getPostGet('codigos_multipases')
         ];
 
-        //echo '<pre>'.var_export($data, true).'</pre>';
+        //echo '<pre>'.var_export($data, true).'</pre>';exit;
         
-        $this->asistenciaModel->_insert_asistencia($data);
+        $this->asistenciaModel->insert($data);
         //$this->membresiasModel->_update_status_all($data['membresias']);
         
         return redirect()->to('exitoAsistencia');

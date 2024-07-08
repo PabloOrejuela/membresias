@@ -22,7 +22,7 @@ $routes->post('actualizar-user', 'Usuarios::update');
 $routes->post('getNameCedula', 'Usuarios::usuarios_select');
 
 //ASISTENCIA
-$routes->post('asistencia', 'Asistencia::insert', ['as' => 'asistencia']);
+$routes->get('asistencia', 'Asistencia::insert');
 $routes->get('registra-asistencia-instructor', 'Asistencia::FrmRegistraAsistenciaInstructor');
 $routes->get('get-instructor', 'Asistencia::getInstructor');
 $routes->post('registra_aistencia_instructor', 'Asistencia::registraAsistenciaInstructor');

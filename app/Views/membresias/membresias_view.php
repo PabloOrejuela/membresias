@@ -203,10 +203,11 @@
         verificaMaximo();
         
         $.ajax({
-            type: "POST",
+            dataType:"html",
             url: "asistencia",
-            cache:false,
+            method: 'get',
             data: $('form#form-asistencia').serialize(),
+            
             success: function(response){
                 alert("Registado");
                 $('#asistenciaModal').modal('hide');
