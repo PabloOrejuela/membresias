@@ -1,4 +1,3 @@
-
 <link rel="stylesheet" href="<?= site_url(); ?>public/css/membresias_view.css">
 <div id="layoutSidenav_content">
     <main>

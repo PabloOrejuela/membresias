@@ -44,10 +44,9 @@ class Validation extends BaseConfig
     public $newMember = [
         'nombre'  => 'required|min_length[5]',
         'email'   => 'required|valid_email|is_unique[miembros.email]',
-        'cedula'  => 'required|is_unique[miembros.cedula]',
+        'num_documento'  => 'required|is_unique[miembros.num_documento]',
         'telefono'   => 'required',
         'fecha_nacimiento'   => 'required|valid_date',
-
     ];
 
     public $newMember_errors = [
@@ -55,9 +54,9 @@ class Validation extends BaseConfig
             'required' => 'El campo {field} es obligatorio',
             'min_length' => 'El campo {field} debe tener almenos 5 caracteres',
         ],
-        'cedula' => [
-            'required' => 'El campo {field} es obligatorio',
-            'is_unique' => 'Esta {field} ya está siendo usada por otra persona',
+        'num_documento' => [
+            'required' => 'El campo CEDULA es obligatorio',
+            'is_unique' => 'Esta CEDULA ya está siendo usada por otra persona',
         ],
         'email' => [
             'required' => 'El campo {field} es obligatorio',
@@ -66,6 +65,10 @@ class Validation extends BaseConfig
         ],
         'telefono' => [
             'required' => 'El campo {field} es obligatorio'
+        ],
+        'fecha_nacimiento' => [
+            'required' => 'El campo Fecha de nacimiento es obligatorio',
+            'valid_date' => 'El campo Fecha de nacimiento debe tener un formato de fecha correcto',
         ],
     ];
 

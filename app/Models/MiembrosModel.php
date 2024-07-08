@@ -14,13 +14,24 @@ class MiembrosModel extends Model{
     protected $returnType     = 'object';
     protected $useSoftDeletes = false;
 
-    protected $allowedFields = ['nombre', 'num_documento', 'telefono', 'email', 'fecha_nacimiento', 'representante', 'telf_representante'];
+    protected $allowedFields = [
+        'nombre', 
+        'num_documento', 
+        'telefono', 
+        'email', 
+        'fecha_nacimiento', 
+        'representante', 
+        'telf_representante', 
+        'nombre_contacto', 
+        'telf_contacto', 
+        'email_contacto'
+    ];
 
     protected bool $allowEmptyInserts = false;
     protected bool $updateOnlyChanged = true;
 
     // Dates
-    protected $useTimestamps = false;
+    protected $useTimestamps = true;
     protected $dateFormat    = 'datetime';
     protected $createdField  = 'created_at';
     protected $updatedField  = 'updated_at';
