@@ -30,13 +30,23 @@ class Asistencia extends BaseController{
             'num_asistencias' => $this->request->getPostGet('num_asistencias'),
             'codigos_multipases' => $this->request->getPostGet('codigos_multipases')
         ];
-
-        //echo '<pre>'.var_export($data, true).'</pre>';exit;
+        
+        // echo '<pre>'.var_export($data['asistencias'], true).'</pre>';exit;
         
         $this->asistenciaModel->insert($data);
+
+        //Actualizar las asistencias de la membresía en la tabla membresías
+        //Traigo la suma de las asistencias de esa membresía
+        $dato = [
+            'asistencias' => $this->asistenciaModel->_getSumaAsistencias($data['idmembresias'])
+        ];  
+
+        //Hago el update en la tabla membresías
+        $this->membresiasModel->update($data['idmembresias'], $dato);
+
         //$this->membresiasModel->_update_status_all($data['membresias']);
         
-        return redirect()->to('exitoAsistencia');
+        return 1;
     }
 
     public function exitoAsistencia(){

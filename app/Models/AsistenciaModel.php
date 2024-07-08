@@ -72,4 +72,17 @@ class AsistenciaModel extends Model{
             return 1;
         }
     }
+
+    public function _getSumaAsistencias($idmembresias){
+        $result = null;
+        $builder = $this->db->table('asistencia');
+        $builder->selectSum('num_asistencias', 'sumaAsistencias');
+        $builder->where('idmembresias', $idmembresias);
+        $query = $builder->get();
+        foreach ($query->getResult() as $row) {
+            $result = $row->sumaAsistencias;
+        }
+     
+        return $result;
+    }
 }

@@ -28,7 +28,7 @@ class Membresia extends BaseController{
             $this->membresiasModel->_update_status_all($data['membresias']);
             $this->membresiasModel->_update_cantidad_usos_membresia($data['membresias']);
     
-            // echo '<pre>'.var_export($data['membresias'], true).'</pre>';exit;
+            //echo '<pre>'.var_export($data['membresias'], true).'</pre>';exit;
             //$data['version'] = $this->version;
 
             $data['title']='Lista de membresías';

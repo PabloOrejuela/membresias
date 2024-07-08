@@ -209,13 +209,20 @@
             data: $('form#form-asistencia').serialize(),
             
             success: function(response){
-                alert("Registado");
+                alertaMensaje("Procesando", 1000, "info");
+                alertaMensaje("Se ha registrado la asistencia", 3000, "success");
                 $('#asistenciaModal').modal('hide');
+                setInterval(function () {
+                    location.reload(true)
+                }, 3000);
             },
             error: function(){
                 //alert("Error");
-                alert("Registado");
-                location.reload(true);
+                alertaMensaje("Ha habido un error, no se ha registrado la asistencia", 3000, "error");
+                setInterval(function () {
+                    location.reload(true)
+                }, 5000);
+                
             }
         });
         
