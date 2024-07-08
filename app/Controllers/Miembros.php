@@ -4,7 +4,6 @@ namespace App\Controllers;
 
 class Miembros extends BaseController{
 
-
     public function index(){
         $data['idrol'] = $this->session->idrol;
         $data['idusuario'] = $this->session->idusuario;
@@ -110,33 +109,29 @@ class Miembros extends BaseController{
     }
 
     public function update(){        
-        $validation = service('validation');
-        $validation->setRules([
-            'nombre'     => 'required|min_length[5]',
-            'email'        => 'required|valid_email',
-            'cedula'        => 'required',
-            'telefono'        => 'required',
-            'fecha_nacimiento' => 'required|valid_date'
-        ]);
+
+        $id = $this->request->getPostGet('idmiembros');
+
+        $data = [
+            'nombre' => $this->request->getPostGet('nombre'),
+            'num_documento' => $this->request->getPostGet('num_documento'),
+            'fecha_nacimiento' => $this->request->getPostGet('fecha_nacimiento'),
+            'telefono' => $this->request->getPostGet('telefono'),
+            'email' => $this->request->getPostGet('email'),
+            'representante' => $this->request->getPostGet('representante'),
+            'telf_representante' => $this->request->getPostGet('telf_representante'),
+        ];
         
-        if (!$validation->withRequest($this->request)->run()) {
+        $this->validation->setRuleGroup('edit_miembro');
+
+        if (!$this->validation->withRequest($this->request)->run()) {
             //Depuración
             //dd($validation->getErrors());
-            return redirect()->back()->withInput()->with('errors', $validation->getErrors());
+            return redirect()->back()->withInput()->with('errors', $this->validation->getErrors());
         }else{
-            $data = [
-                'idmiembros' => $this->request->getPostGet('idmiembros'),
-                'nombre' => $this->request->getPostGet('nombre'),
-                'cedula' => $this->request->getPostGet('cedula'),
-                'telefono' => $this->request->getPostGet('telefono'),
-                'email' => $this->request->getPostGet('email'),
-                'fecha_nacimiento' => $this->request->getPostGet('fecha_nacimiento')
-            ];
-            //echo '<pre>'.var_export($data, true).'</pre>';
-            $lastQuery = $this->miembrosModel->save($data);
-            return redirect()->to('miembros');
             
+            $this->miembrosModel->update($id, $data);
+            return redirect()->to('miembros');
         }
     }
-
 }

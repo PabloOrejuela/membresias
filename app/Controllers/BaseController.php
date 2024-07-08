@@ -78,7 +78,7 @@ abstract class BaseController extends Controller
         $this->session = \Config\Services::session();
         $this->request = \Config\Services::request();
         $this->validation = \Config\Services::validation();
-
-        $this->version = '1.0.2';
+        $this->image = \Config\Services::image();
+        $this->version = '1.0.3';
     }
 }

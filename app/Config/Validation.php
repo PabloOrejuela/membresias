@@ -189,4 +189,33 @@ class Validation extends BaseConfig
             'integer' => 'Hay un error al elegir un usuario, contacte al administrador del sistema',
         ],
     ];
+
+    public $edit_miembro = [
+        'nombre'     => 'required|min_length[5]',
+        'email'        => 'required|valid_email',
+        'num_documento'        => 'required',
+        'telefono'        => 'required',
+        'fecha_nacimiento' => 'required|valid_date'
+    ];
+
+    public $edit_miembro_errors = [
+        'nombre' => [
+            'required' => 'El campo NOMBRE es requerido',
+            'min_length' => 'El campo NOMBRE debe tener al menos 5 caracteres',
+        ],
+        'email' => [
+            'required' => 'El campo EMAIL es requerido',
+            'valid_email' => 'El campo EMAIL no tiene un formato correcto',
+        ],
+        'num_documento' => [
+            'required' => 'El campo CEDULA es requerido',
+        ],
+        'telefono' => [
+            'required' => 'Es obligatorio elegir un instructor para generar el reporte',
+        ],
+        'fecha_nacimiento' => [
+            'required' => 'El camopo FECHA DE NACIMIENTO es requerido',
+            'valid_date' => 'La FECHA DE NACIMIENTO no tiene un formato correcto',
+        ],
+    ];
 }

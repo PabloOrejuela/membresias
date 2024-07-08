@@ -50,8 +50,14 @@
                             }
                             echo form_hidden('idmiembros', $datos->idmiembros);
                     ?>
-                    
-                    <input type="submit" name="submit" value="Guardar" class="btn btn-outline-info" />
+                    <p>
+                        <?= session('errors.nombre');?> 
+                        <?= session('errors.num_documento');?> 
+                        <?= session('errors.fecha_nacimiento');?>
+                        <?= session('errors.telefono');?>
+                        <?= session('errors.email');?>
+                    </p>
+                    <input type="submit" name="submit" value="Actualizar" class="btn btn-outline-info" />
                 </form>
             </div>
         </div>
