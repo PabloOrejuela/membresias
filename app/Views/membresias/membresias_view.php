@@ -73,8 +73,8 @@
                                 echo '<td id="td-center">'.$value->entradas.'</td>'; 
 
                                 //Entradas disponibles)
-                                if ($saldo > 0) {
-                                    echo '<td id="td-center">'.number_format($saldo,0).'</td>'; 
+                                if ($entradas_disponibles > 0) {
+                                    echo '<td id="td-center">'.number_format($entradas_disponibles,0).'</td>'; 
                                 } else {
                                     echo '<td id="td-center">0</td>'; 
                                 }
