@@ -37,6 +37,16 @@
                             <input type="email" class="form-control" name="email" id="email" value="<?= old('email'); ?>"  placeholder="jdoe@email.com">
                         </div>
                         <p><?= session('errors.email');?> </p>
+                        <div class="mb-3 col-md-4">
+                            <label for="representante" class="form-label">Representante:</label>
+                            <input type="text" class="form-control" name="representante" id="representante" value="<?= old('representante'); ?>" placeholder="representante">
+                        </div>
+                        <p><?= session('errors.representante');?> </p>
+                        <div class="mb-3 col-md-8">
+                            <label for="telf_representante" class="form-label">Teléfono representante:</label>
+                            <input type="text" class="form-control" name="telf_representante" maxlength="10" id="telf_representante" value="<?= old('telf_representante'); ?>" placeholder="teléfono representante">
+                        </div>
+                        <p><?= session('errors.telfrep');?> </p>
                         <div class="mb-3">
                             <label for="email" class="form-label">Membresías:</label>
                             <select class="form-select" aria-label="Default select example" name="idpaquete">
