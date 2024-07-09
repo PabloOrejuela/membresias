@@ -51,8 +51,28 @@
                                     <td>'.$value->nombre.'</td>
                                     <td>'.$value->num_documento.'</td>
                                     <td>'.$value->paquete.'</td>
-                                    <td>'.$value->fecha_inicio.'</td>
-                                    <td>'.$value->fecha_final.'</td>
+                                    <td>
+                                        <a
+                                            type="button" 
+                                            id="membresia_'.$value->idmembresias.'" 
+                                            href="#" 
+                                            data-id="'.$value->idmembresias.'" 
+                                            data-fecha="'.$value->fecha_inicio.'" 
+                                            data-bs-toggle="modal" 
+                                            data-bs-target="#fechaInicioModal">'.$value->fecha_inicio.'
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a
+                                            type="button" 
+                                            id="membresia_'.$value->idmembresias.'" 
+                                            href="#" 
+                                            data-id="'.$value->idmembresias.'" 
+                                            data-fecha="'.$value->fecha_final.'" 
+                                            data-bs-toggle="modal" 
+                                            data-bs-target="#fechaFinalModal">'.$value->fecha_final.'
+                                        </a>
+                                    </td>
                                     <td>'.date("Y-m-d").'</td>'; //FECHA ACTUAL
 
                             //DIAS
@@ -122,7 +142,7 @@
                                     echo '<td id="td-center">
                                             <a type="button" id="btn-register" href="asistencia/'.$value->idmembresias.'" 
                                                 class="registro" data-bs-toggle="modal" data-bs-target="#asistenciaModal" 
-                                                onClick="pasaIdmembresia('.$value->idmembresias.','. $saldo.');">Asistencia
+                                                onClick="pasaIdmembresia('.$value->idmembresias.','. $saldo.');"><i class="fa-solid fa-dumbbell"></i> Asistencia
                                             </a>
                                         </td>
                                         <td id="td-center">
@@ -179,6 +199,46 @@
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
             <button type="button" class="btn btn-primary" onClick="ActualizaAsistencias();">Registrar</button>
         </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Fecha inicio -->
+<div class="modal fade" id="fechaInicioModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Editar Fecha inicio de la membresía</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+      <input class="form-control" type="hidden" name="idmembresias" id="idmembresias">
+      <input class="form-control" type="date" name="fecha_inicio_membresia" id="fecha_inicio_membresia">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onClick="actualizarFechaInicioMembresia()">Actualizar</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Fecha final -->
+<div class="modal fade" id="fechaFinalModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Editar Fecha final de la membresía</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+      <input class="form-control" type="hidden" name="idmembresias" id="idmembresias">
+      <input class="form-control" type="date" name="fecha_final_membresia" id="fecha_final_membresia">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onClick="actualizarFechaFinalMembresia()">Actualizar</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+      </div>
     </div>
   </div>
 </div>

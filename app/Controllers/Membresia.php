@@ -245,4 +245,30 @@ class Membresia extends BaseController{
             return redirect()->to('membresias');
         }
     }
+
+    public function actualizarFechaInicioMembresia(){
+        $id = $this->request->getPostGet('id');
+        $fecha = $this->request->getPostGet('fechaInicio');
+        $fecha_inicio = date("Y-m-d", strtotime($fecha));
+        $obj = [
+            'fecha_inicio' => $fecha_inicio
+        ];
+
+        $data['res'] = $this->membresiasModel->update($id, $obj);
+        //echo $this->db->getLastQuery();
+        echo json_encode($data);
+    }
+
+    public function actualizarFechaFinalMembresia(){
+        $id = $this->request->getPostGet('id');
+        $fecha = $this->request->getPostGet('fechaFinal');
+        $fecha_final = date("Y-m-d", strtotime($fecha));
+        $obj = [
+            'fecha_final' => $fecha_final
+        ];
+
+        $data['res'] = $this->membresiasModel->update($id, $obj);
+        //echo $this->db->getLastQuery();
+        echo json_encode($data);
+    }
 }
