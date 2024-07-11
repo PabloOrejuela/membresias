@@ -133,8 +133,9 @@ class Membresia extends BaseController{
       */
       public function transfer_membership(){
 
+        $id = $this->request->getPostGet('idmembresias');
+
         $data = [
-            'idmembresias' => $this->request->getPostGet('idmembresias'),
             'idmiembros' => $this->request->getPostGet('idmiembros'),
             'observacion' => $this->request->getPostGet('observacion'),
             'idtipomovimiento' => 1, //TRANSFERENCIA
@@ -148,11 +149,13 @@ class Membresia extends BaseController{
             //dd($validation->getErrors());
             return redirect()->back()->withInput()->with('errors', $this->validation->getErrors());
         }else{
-            //echo '<pre>'.var_export($data, true).'</pre>';exit;
-            //LLamo a la funcion del modelo que transfiere la membresía
-            $result = $this->membresiasModel->_transfiere_membresia($data);
+
+            //PABLO Aquí se debería guardar un historial de la transferencia
+
+            //Transfiere la membresía
+            $result = $this->membresiasModel->update($id, $data);
             if ($result == NULL) {
-                //echo $lastQuery;
+                echo $lastQuery;
             }else{
                 return redirect()->to('membresias');
             }
