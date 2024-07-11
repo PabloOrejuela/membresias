@@ -45,7 +45,7 @@ $routes->post('update_date', 'Membresia::update_date');
 $routes->post('miembros_select', 'Membresia::miembros_select');
 $routes->get('transfer', 'Membresia::frm_select_transfer');
 $routes->get('select-transfer-membership/(:num)', 'Membresia::fr_select_member_transfer_membership/$1', ['as' => 'select-transfer_membership']);
-$routes->post('transfer_membership', 'Membresia::transfer_membership',['as' => 'transfer_membership']);
+$routes->post('transfer_membership', 'Membresia::transfer_membership');
 $routes->get('membresias/actualizarFechaInicioMembresia', 'Membresia::actualizarFechaInicioMembresia');
 $routes->get('membresias/actualizarFechaFinalMembresia', 'Membresia::actualizarFechaFinalMembresia');
 

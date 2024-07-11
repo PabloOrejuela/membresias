@@ -16,20 +16,10 @@
         <form action="<?= base_url(); ?>validate" method="post" class="form">
           <div class="input-group mb-3">
             <input type="text" class="form-control" name="user" placeholder="usuario">
-            <div class="input-group-append">
-                <div class="input-group-text">
-                    <span class="input-group-text" id="basic-addon1"><span class="fas fa-user"></span></span></span>
-                </div>
-            </div>
           </div>
           <p id="error-message"><?= session('errors.user');?> </p>
           <div class="input-group mb-3">
             <input type="password" class="form-control" name="password" placeholder="Password">
-            <div class="input-group-append">
-              <div class="input-group-text">
-                <span class="input-group-text" id="basic-addon1"><span class="fas fa-lock"></span></span></span>
-              </div>
-            </div>
           </div>
           <p id="error-message"><?= session('errors.password');?> </p>
           <div class="row">
