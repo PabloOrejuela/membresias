@@ -20,7 +20,7 @@ class Usuarios extends BaseController {
         //$data['version'] = $this->CI_VERSION;
 
         $data['title']='Login';
-        $data['main_content']='usuarios/login_view';
+        $data['main_content']='home/login_view';
         return view('includes/template_login', $data);
     }
 
