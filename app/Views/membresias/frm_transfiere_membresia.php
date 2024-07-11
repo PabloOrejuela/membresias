@@ -9,7 +9,6 @@
                 </div>
                 <div class="card-body">               
                     <style>
-                        
                         label{
                             margin-right: 10px;
                         }
@@ -55,17 +54,14 @@
                                                 <input class="form-check-input mt-0" type="radio" value="'.$value->idmiembros.'" aria-label="Checkbox" name="idmiembros">
                                             </td>
                                         </tr>';
-                                        
                                 }
-                                
                             ?>
-                           
                         </table>
-                        
                         <input type="submit" class="btn btn-outline-info" value="Transferir">
                     </form>
                 </div>
             </div>
         </div>
     </main>
+
 

@@ -99,7 +99,7 @@ class Membresia extends BaseController{
             //echo '<pre>'.var_export($data['membresias'], true).'</pre>';
 
             $data['title']='Tranferir membresías';
-            $data['main_content']='membresias/frm_transfer_membresias_view';
+            $data['main_content']='membresias/transfer_membresias_view';
             return view('includes/template', $data);
         }else{
             return redirect()->to('salir');
