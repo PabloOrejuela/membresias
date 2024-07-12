@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="<?= site_url(); ?>public/css/asigna-membresia-miembro.css">
 <div id="layoutSidenav_content">
     <main>
         <div class="container-fluid px-4">
@@ -48,8 +49,8 @@
                                     }
                                 ?>
                             </select>
+                            <p id="error-message"><?= session('errors.idpaquete');?> </p>
                         </div>
-                        <p id="error-message"><?= session('errors.idpaquete');?> </p>
                         <input type="submit" name="submit" value="Guardar" class="btn btn-outline-info" />
                     </form>
                 </div>

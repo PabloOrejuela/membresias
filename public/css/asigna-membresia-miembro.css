@@ -1,0 +1,17 @@
+#td-center{
+    text-align: center;
+}
+
+#td-center-red{
+    text-align: center;
+    color: rgb(223, 7, 7);
+}
+
+a {
+	text-decoration: none;
+}
+
+#error-message{
+	color: #f00;
+    font-size: 0.8em;
+}
