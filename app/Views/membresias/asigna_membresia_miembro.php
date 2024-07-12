@@ -49,8 +49,7 @@
                                 ?>
                             </select>
                         </div>
-                        <p><?= session('errors.idpaquete');?> </p>
-
+                        <p id="error-message"><?= session('errors.idpaquete');?> </p>
                         <input type="submit" name="submit" value="Guardar" class="btn btn-outline-info" />
                     </form>
                 </div>

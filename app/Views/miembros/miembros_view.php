@@ -18,19 +18,23 @@
                         </thead>
                     <?php 
                         
-                        
-
-                        foreach ($miembrosList as $key => $value) {
-                            //$last = $miembrosModel->_get_last_attend($idmembresias);
+                        if (isset($miembrosList) && $miembrosList != null) {
+                            foreach ($miembrosList as $key => $value) {
+                                //$last = $miembrosModel->_get_last_attend($idmembresias);
+                                echo '<tr>
+                                        <td>'.$value->nombre.'</td>
+                                        <td>'.$value->num_documento.'</td>
+                                        <td>'.$value->telefono.'</td>
+                                        <td style="text-align:center;">
+                                            <a type="button" id="btn-register" href="edita_datos_miembro/'.$value->idmiembros.'">
+                                                <i class="fa-solid fa-user-pen"></i>   
+                                            </a>
+                                        </td>
+                                    </tr>';
+                            }
+                        } else {
                             echo '<tr>
-                                    <td>'.$value->nombre.'</td>
-                                    <td>'.$value->num_documento.'</td>
-                                    <td>'.$value->telefono.'</td>
-                                    <td style="text-align:center;">
-                                        <a type="button" id="btn-register" href="edita_datos_miembro/'.$value->idmiembros.'">
-                                            <i class="fa-solid fa-user-pen"></i>   
-                                        </a>
-                                    </td>
+                                    <td colspan="4">No hay registros que mostrar, pudo haber ocurrido un error</td>
                                 </tr>';
                         }
                     ?>
