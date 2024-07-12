@@ -1,9 +1,9 @@
 <h3>Cambios</h3>
 <ul>
-    <li>No funcionaban los forms de nuevo usuario ni de editar usuario, se quitó las validaciones para que funcionen</li>
+    <li>Se modifó la url de la ruta del form de asignar membresías</li>
+    <li>El el grid de asignar membresías se manejó la excepción en caso de que la lista de miembros llegue vacía</li>
 </ul>
 </br>
 <h3>Correcciones</h3>
 <ul>
-    <li>No funcionaban los forms de nuevo usuario ni de editar usuario, se quitó las validaciones de los campos ahora funcionan pero hay que revisar esas validaciones</li>
 </ul>

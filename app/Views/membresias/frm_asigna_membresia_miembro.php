@@ -17,18 +17,24 @@
                         </thead>
                     <?php 
                         
-                        
+                        $miembrosList = null;
 
-                        foreach ($miembrosList as $key => $value) {
-                            //$last = $miembrosModel->_get_last_attend($idmembresias);
+                        if ($miembrosList != null) {
+                            foreach ($miembrosList as $key => $value) {
+                                //$last = $miembrosModel->_get_last_attend($idmembresias);
+                                echo '<tr>
+                                        <td>'.$value->nombre.'</td>
+                                        <td>'.$value->num_documento.'</td>
+                                        <td style="text-align:center;">
+                                            <a type="button" id="btn-register" href="asigna_membresia_miembro/'.$value->idmiembros.'">
+                                                <i class="fa-solid fa-user-pen"></i>   
+                                            </a>
+                                        </td>
+                                    </tr>';
+                            }
+                        }else {
                             echo '<tr>
-                                    <td>'.$value->nombre.'</td>
-                                    <td>'.$value->num_documento.'</td>
-                                    <td style="text-align:center;">
-                                        <a type="button" id="btn-register" href="asigna_membresia_miembro/'.$value->idmiembros.'">
-                                            <i class="fa-solid fa-user-pen"></i>   
-                                        </a>
-                                    </td>
+                                    <td colspan="3">No hay información que mostrar, puede haber ocurrido un error</td>
                                 </tr>';
                         }
                     ?>

@@ -29,7 +29,7 @@ $routes->post('registra_aistencia_instructor', 'Asistencia::registraAsistenciaIn
 
 //MIEMBROS
 $routes->get('miembros', 'Miembros::index');
-$routes->get('frm_asigna_membresia_miembro', 'Membresia::frm_asigna_membresia_miembro');
+$routes->get('frm-asigna-membresia-miembro', 'Membresia::frm_asigna_membresia_miembro');
 $routes->get('nuevo', 'Miembros::nuevo');
 $routes->post('insert', 'Miembros::insert');
 $routes->post('actualizar', 'Miembros::update');
