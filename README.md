@@ -1,5 +1,6 @@
 <h3>Cambios</h3>
 <ul>
+    <li>Se implementó el mensaje de alerta cuando se cambia de paquete en le form de asignar paquete a miembro</li>
     <li>Se implementó DatatablesSimple en asigna membresía</li>
     <li>Se modificó las rutas de asignar membresía</li>
     <li>Se modifó la url de la ruta del form de asignar membresías</li>

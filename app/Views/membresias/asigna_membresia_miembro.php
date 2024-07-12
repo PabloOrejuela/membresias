@@ -40,7 +40,7 @@
                         ?>
                         <div class="mb-3">
                             <label for="email" class="form-label">Membresías:</label>
-                            <select class="form-select" aria-label="Default select example" name="idpaquete">
+                            <select class="form-select" aria-label="Default select example" name="idpaquete" id="idpaquete">
                                 <option value="0">Elija un paquete</option>
                                 <?php 
                                     foreach ($paquetes as $key => $paquete) {
@@ -57,9 +57,5 @@
             </div>
         </div>
     </main>
-
-<script type="text/javascript">
-    $('document').ready(function(){
-        $("#telefono").ForceNumericOnly();
-    });
-</script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="<?= site_url(); ?>public/js/asigna-membresia-miembro.js"></script>
