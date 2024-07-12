@@ -7,6 +7,7 @@
         <meta name="description" content="" />
         <meta name="author" content="" />
         <title>Miembros</title>
+        <link rel="icon" href="<?= site_url(); ?>/favicon.ico" type="image/ico">
         <link href="<?= site_url(); ?>public/css/datatables.css" rel="stylesheet" />
         <link href="<?= site_url(); ?>public/css/styles.css" rel="stylesheet" />
         <script src="<?= site_url(); ?>public/js/font-awesome.js"></script>
@@ -18,7 +19,7 @@
     <body class="sb-nav-fixed" onload="mueveReloj()" >
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
             <!-- Navbar Brand-->
-            <a class="navbar-brand ps-3" href="<?= site_url(); ?>"><img src="<?= site_url(); ?>public/img/icono-64.png" alt="logo" id="img-logo">YouShop</a>
+            <a class="navbar-brand ps-3" href="<?= site_url(); ?>"><img src="<?= site_url(); ?>public/img/logo-tribu.png" alt="logo" id="img-logo"></a>
             <!-- Sidebar Toggle-->
             <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
             <!-- Navbar Search-->

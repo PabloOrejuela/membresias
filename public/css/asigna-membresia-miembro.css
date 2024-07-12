@@ -15,3 +15,16 @@ a {
 	color: #f00;
     font-size: 0.8em;
 }
+
+.form-check #flexCheckDefault{
+    margin: 0 auto;
+}
+
+label{
+    font-weight: bold;
+}
+
+#tabla-semana{
+    margin-top: 5px;
+    font-size: 0.9em;
+}

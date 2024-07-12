@@ -4,7 +4,7 @@
         <div class="container-fluid px-4">
             <h3 class="mt-4"><?= esc($title); ?></h3>
                         
-            <div class="card mb-4 col-md-6">
+            <div class="card mb-4 col-md-8">
                 <div class="card-header">
                     <i class="fa-solid fa-users"></i>
                     <h5>Asigna una membresía a un miembro ya registrado</h5>
@@ -50,6 +50,60 @@
                                 ?>
                             </select>
                             <p id="error-message"><?= session('errors.idpaquete');?> </p>
+                        </div>
+                        <div class="mb-3 mt-2">
+                            <table id="tabla-semana" class="table">
+                                <thead><th colspan="7">Días de Asistencia</th></thead>
+                                <thead>
+                                    <th>Lunes</th>
+                                    <th>Martes</th>
+                                    <th>Miércoles</th>
+                                    <th>Jueves</th>
+                                    <th>Viernes</th>
+                                    <th>Sábado</th>
+                                    <th>Domingo</th>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td id="td-center">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="1" id="flexCheckDefault" name="lunes">
+                                            </div>
+                                        </td>
+                                        <td id="td-center">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="1" id="flexCheckDefault" name="martes">
+                                            </div>
+                                        </td>
+                                        <td id="td-center">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="1" id="flexCheckDefault" name="miercoles">
+                                            </div>
+                                        </td>
+                                        <td id="td-center">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="1" id="flexCheckDefault" name="jueves">
+                                            </div>
+                                        </td>
+                                        <td id="td-center">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="1" id="flexCheckDefault" name="viernes">
+                                            </div>
+                                        </td>
+                                        <td id="td-center">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="1" id="flexCheckDefault" name="sabado">
+                                            </div>
+                                        </td>
+                                        <td id="td-center">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="1" id="flexCheckDefault" name="domingo">
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <p id="error-message"><?= session('errors.dias');?> </p>
                         </div>
                         <input type="submit" name="submit" value="Guardar" class="btn btn-outline-info" />
                     </form>
