@@ -162,7 +162,7 @@ class Membresia extends BaseController{
         }
     }
 
-    public function frm_asigna_membresia_miembro(){
+    public function grid_asigna_membresia(){
 
         $data = $this->acl();
         
@@ -172,7 +172,7 @@ class Membresia extends BaseController{
             //$data['lastQuery'] = $this->db->getLastQuery();
 
             $data['title']='Asignar una membresía a un miembro';
-            $data['main_content']='membresias/frm_asigna_membresia_miembro';
+            $data['main_content']='membresias/grid_asigna_membresia';
             return view('includes/template', $data);
         }else{
             return redirect()->to('salir');
