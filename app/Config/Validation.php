@@ -74,10 +74,11 @@ class Validation extends BaseConfig
 
     public $newUser = [
         'nombre'  => 'required|min_length[5]',
-        'email'   => 'required|valid_email|is_unique[usuarios.email]',
-        'cedula'  => 'required|is_unique[usuarios.cedula]',
+        'user'  => 'required|min_length[5]',
+        'email'   => 'required|valid_email',
+        'cedula'  => 'required|is_unique[usuario.cedula]',
         'telefono'   => 'required',
-        'idroles'   => 'required|greater_than[0]',
+        'idrol'   => 'required|greater_than[0]',
 
     ];
 
@@ -93,12 +94,11 @@ class Validation extends BaseConfig
         'email' => [
             'required' => 'El campo {field} es obligatorio',
             'valid_email' => 'Debe ingresar un {field} válido',
-            'is_unique' => 'Este {field} ya está siendo usado por otra persona',
         ],
         'telefono' => [
             'required' => 'El campo {field} es obligatorio'
         ],
-        'idroles' => [
+        'idrol' => [
             'required' => 'El campo {field} es obligatorio',
             'greater_than' => 'El campo {field} es obligatorio'
         ],

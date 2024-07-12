@@ -102,7 +102,7 @@
                         <?= session('errors.fecha_nacimiento');?>
                         <?= session('errors.telefono');?>
                         <?= session('errors.email');?>
-                    </p>
+                        </p>
                         <input type="submit" name="submit" value="Guardar" class="btn btn-outline-info" />
                     </form>
                 </div>

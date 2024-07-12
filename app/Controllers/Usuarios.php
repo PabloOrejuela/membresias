@@ -127,42 +127,27 @@ class Usuarios extends BaseController {
     public function update(){    
         
         $password = $this->request->getPostGet('password');
+        $id = $this->request->getPostGet('idusuario');
+
+        $data = [
+            'nombre' => strtoupper($this->request->getPostGet('nombre')),
+            'num_documento' => $this->request->getPostGet('num_documento'),
+            'idtipo_documento' => 2,
+            'telefono' => $this->request->getPostGet('telefono'),
+            'email' => strtolower($this->request->getPostGet('email')),
+            'idrol' => $this->request->getPostGet('idrol'),
+            'user' => strtolower($this->request->getPostGet('user')),
+        ];
 
         if ($password != '') {
-            $data = [
-                'nombre' => $this->request->getPostGet('nombre'),
-                'num_documento' => $this->request->getPostGet('num_documento'),
-                'telefono' => $this->request->getPostGet('telefono'),
-                'email' => $this->request->getPostGet('email'),
-                'idrol' => $this->request->getPostGet('idrol'),
-                'user' => $this->request->getPostGet('user'),
-                'password' => md5($password)
-            ];
-        }else{
-            $data = [
-                'nombre' => $this->request->getPostGet('nombre'),
-                'num_documento' => $this->request->getPostGet('num_documento'),
-                'telefono' => $this->request->getPostGet('telefono'),
-                'email' => $this->request->getPostGet('email'),
-                'idrol' => $this->request->getPostGet('idrol'),
-                'user' => $this->request->getPostGet('user'),
-            ];
+            $data['password'] = md5($password);
         }
         
+        //echo '<pre>'.var_export($data, true).'</pre>';exit;
         
-        $this->validation->setRuleGroup('updateUser');
-        if (!$this->validation->withRequest($this->request)->run()) {
-            //Depuración
-            //dd($validation->getErrors());
-            return redirect()->back()->withInput()->with('errors', $this->validation->getErrors());
-        }else{
-            
-            //echo '<pre>'.var_export($data, true).'</pre>';exit;
-            
-            $lastQuery = $this->miembrosModel->save($data);
-            return redirect()->to('usuarios');
-            
-        }
+        $this->usuarioModel->update($id, $data);
+        echo $this->db->getLastQuery();
+        return redirect()->to('usuarios');
     }
 
     public function nuevo($data = NULL){
@@ -179,31 +164,24 @@ class Usuarios extends BaseController {
         }
     }
 
-    public function insert($data = NULL){
+    public function insert(){
 
         $data = array(
-            'nombre' => $this->request->getPostGet('nombre'),
+            'nombre' => strtoupper($this->request->getPostGet('nombre')),
             'num_documento' => $this->request->getPostGet('num_documento'),
             'telefono' => $this->request->getPostGet('telefono'),
-            'email' => $this->request->getPostGet('email'),
+            'email' => strtolower($this->request->getPostGet('email')),
             'idrol' => $this->request->getPostGet('idrol'),
             'user' => $this->request->getPostGet('user'),
-            'password' => md5($this->request->getPostGet('password'))
+            'password' => md5($this->request->getPostGet('password')),
+            'user' => $this->request->getPostGet('user'),
         );
-        //echo '<pre>'.var_export($data, true).'</pre>';exit;
-        $this->validation->setRuleGroup('newUser');
-        
-        if (!$this->validation->withRequest($this->request)->run()) {
-            //Depuración
-            //dd($validation->getErrors());
-            return redirect()->back()->withInput()->with('errors', $this->validation->getErrors());
-        }else{ 
 
-            $this->usuarioModel->save($data);
-            $idusuarios = $this->db->insertID();
-            return redirect()->to('usuarios');
-        }
-        
+        $this->usuarioModel->insert($data);
+        //echo $this->db->getLastQuery();
+
+        //$idusuarios = $this->db->insertID();
+        return redirect()->to('usuarios');
     }
 
     public function get_user_cedula($cedula){

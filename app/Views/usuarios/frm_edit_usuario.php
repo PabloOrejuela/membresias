@@ -59,9 +59,9 @@
                                     
                             echo '</select>
                             </div>
-                            <p>'.session('errors.idroles').'</p>';
+                            <p>'.session('errors.idrol').'</p>';
                             }
-                            echo form_hidden('idusuarios', $usuario->idusuario);
+                            echo form_hidden('idusuario', $usuario->idusuario);
                     ?>
                     
                     <input type="submit" name="submit" value="Guardar" class="btn btn-outline-info" />

@@ -1,10 +1,9 @@
 <h3>Cambios</h3>
 <ul>
-    <li>Revisado el form de transferencias</li>
-    <li>El form de transferencias ahora usa update del modelo y actualiza el update_at</li>
+    <li>No funcionaban los forms de nuevo usuario ni de editar usuario, se quitó las validaciones para que funcionen</li>
 </ul>
 </br>
 <h3>Correcciones</h3>
 <ul>
-    <li>Corregida la vista de login, se  le quitó los append con los íconos pues no se veían bien</li>
+    <li>No funcionaban los forms de nuevo usuario ni de editar usuario, se quitó las validaciones de los campos ahora funcionan pero hay que revisar esas validaciones</li>
 </ul>

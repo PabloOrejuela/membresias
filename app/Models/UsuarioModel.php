@@ -13,7 +13,7 @@ class UsuarioModel extends Model{
     protected $insertID         = 0;
     protected $returnType       = 'object';
     protected $useSoftDeletes   = false;
-    protected $protectFields    = true;
+    protected $protectFields    = false;
     protected $allowedFields    = [
         'nombre', 'telefono', 'email', 'direccion', 'password', 'num_documento', 'idroles','logged', 'user'
     ];
