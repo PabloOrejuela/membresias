@@ -2,12 +2,11 @@
 <div id="layoutSidenav_content">
     <main>
         <div class="container-fluid px-4">
-            <h3 class="mt-4"><?= esc($title); ?></h3>
+            <h2 class="mt-4"><?= esc($title); ?></h2>
                         
             <div class="card mb-4 col-md-8">
                 <div class="card-header">
-                    <i class="fa-solid fa-users"></i>
-                    <h5>Asigna una membresía a un miembro ya registrado</h5>
+                    <i class="fa-solid fa-users"></i><?= esc($subtitle); ?>
                 </div>
                 <div class="card-body">
                     <form action="<?php echo site_url().'asign_membresia';?>" method="post">
@@ -51,7 +50,7 @@
                             </select>
                             <p id="error-message"><?= session('errors.idpaquete');?> </p>
                         </div>
-                        <div class="mb-3 mt-2">
+                        <div class="mb-3 mt-2" id="dias-semana">
                             <table id="tabla-semana" class="table">
                                 <thead><th colspan="7">Días de Asistencia</th></thead>
                                 <thead>
@@ -72,32 +71,32 @@
                                         </td>
                                         <td id="td-center">
                                             <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="1" id="flexCheckDefault" name="martes">
+                                                <input class="form-check-input" type="checkbox" value="2" id="flexCheckDefault" name="martes">
                                             </div>
                                         </td>
                                         <td id="td-center">
                                             <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="1" id="flexCheckDefault" name="miercoles">
+                                                <input class="form-check-input" type="checkbox" value="3" id="flexCheckDefault" name="miercoles">
                                             </div>
                                         </td>
                                         <td id="td-center">
                                             <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="1" id="flexCheckDefault" name="jueves">
+                                                <input class="form-check-input" type="checkbox" value="4" id="flexCheckDefault" name="jueves">
                                             </div>
                                         </td>
                                         <td id="td-center">
                                             <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="1" id="flexCheckDefault" name="viernes">
+                                                <input class="form-check-input" type="checkbox" value="5" id="flexCheckDefault" name="viernes">
                                             </div>
                                         </td>
                                         <td id="td-center">
                                             <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="1" id="flexCheckDefault" name="sabado">
+                                                <input class="form-check-input" type="checkbox" value="6" id="flexCheckDefault" name="sabado">
                                             </div>
                                         </td>
                                         <td id="td-center">
                                             <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="1" id="flexCheckDefault" name="domingo">
+                                                <input class="form-check-input" type="checkbox" value="7" id="flexCheckDefault" name="domingo">
                                             </div>
                                         </td>
                                     </tr>

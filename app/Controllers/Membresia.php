@@ -31,7 +31,8 @@ class Membresia extends BaseController{
             //echo '<pre>'.var_export($data['membresias'], true).'</pre>';exit;
             //$data['version'] = $this->version;
 
-            $data['title']='Lista de membresías';
+            $data['title']='Membresías';
+            $data['subtitle']='Lista de membresías';
             $data['main_content']='membresias/membresias_view';
             return view('includes/template', $data);
         }else{
@@ -46,9 +47,11 @@ class Membresia extends BaseController{
         if ($data['logged_in'] == 1) {
             
             $data['membresia'] = $this->membresiasModel->_getMembresia($idmembresias);
+            $data['paquetes'] = $this->paquetesModel->findAll();
             //echo '<pre>'.var_export($data['membresia'], true).'</pre>';exit;
 
-            $data['title']='Edición de membresías';
+            $data['title']='Membresías';
+            $data['subtitle']='Edición de membresías';
             $data['main_content']='membresias/frm_edit_membresias_view';
             return view('includes/template', $data);
         }else{
@@ -97,8 +100,8 @@ class Membresia extends BaseController{
             $this->membresiasModel->_update_status_all($data['membresias']);
 
             //echo '<pre>'.var_export($data['membresias'], true).'</pre>';
-
-            $data['title']='Tranferir membresías';
+            $data['title']='Membresías';
+            $data['subtitle']='Tranferir membresías';
             $data['main_content']='membresias/transfer_membresias_view';
             return view('includes/template', $data);
         }else{
@@ -118,8 +121,8 @@ class Membresia extends BaseController{
             $data['membresia'] = $this->membresiasModel->_getMembresia($idmembresias);
             $data['miembrosList'] = $this->miembrosModel->_getMiembros();
             //echo '<pre>'.var_export($data['miembros'], true).'</pre>';
-
-            $data['title']='Transferir membresía';
+            $data['title']='Membresías';
+            $data['subtitle']='Transferir membresía';
             $data['main_content']='membresias/frm_transfiere_membresia';
             return view('includes/template', $data);
         }else{
@@ -171,7 +174,8 @@ class Membresia extends BaseController{
             $data['miembrosList'] = $this->miembrosModel->_getMiembros();
             //$data['lastQuery'] = $this->db->getLastQuery();
 
-            $data['title']='Asignar una membresía a un miembro';
+            $data['title']='Membresías';
+            $data['subtitle']='Asignar una membresía a un miembro';
             $data['main_content']='membresias/grid_asigna_membresia';
             return view('includes/template', $data);
         }else{
@@ -189,7 +193,8 @@ class Membresia extends BaseController{
             $data['datos'] = $this->miembrosModel->find($idmiembros);
             //$data['lastQuery'] = $this->db->getLastQuery();
 
-            $data['title']='Asignar una membresía a un miembro';
+            $data['title']='Membresías';
+            $data['subtitle']='Asignar una membresía a un miembro';
             $data['main_content']='membresias/asigna_membresia_miembro';
             return view('includes/template', $data);
         }else{
@@ -197,13 +202,50 @@ class Membresia extends BaseController{
         }
     }
 
-    public function asign_membresia(){        
+    public function asign_membresia(){   
+        
+        $dias_asistencia = '';
 
+        $lunes = $this->request->getPostGet('lunes');
+        $martes = $this->request->getPostGet('martes');
+        $miercoles = $this->request->getPostGet('miercoles');
+        $jueves = $this->request->getPostGet('jueves');
+        $viernes = $this->request->getPostGet('viernes');
+        $sabado = $this->request->getPostGet('sabado');
+        $domingo = $this->request->getPostGet('domingo');
+
+        if ($lunes) {
+            $dias_asistencia .= $lunes.',';
+        } 
+        if ($martes) {
+            $dias_asistencia .= $martes.',';
+        }
+        if ($miercoles) {
+            $dias_asistencia .= $miercoles.',';
+        }
+        if ($jueves) {
+            $dias_asistencia .= $jueves.',';
+        }
+        if ($viernes) {
+            $dias_asistencia .= $viernes.',';
+        }
+        if ($sabado) {
+            $dias_asistencia .= $sabado.',';
+        }
+        if ($domingo) {
+            $dias_asistencia .= $domingo.',';
+        }
+        
+        
         $data = [
             'idpaquete' => $this->request->getPostGet('idpaquete'),
             'idmiembros' => $this->request->getPostGet('idmiembros'),
             'observacion' => $this->request->getPostGet('observacion'),
+            'dias_asistencia' => $dias_asistencia
         ];
+
+
+        //echo '<pre>'.var_export($data, true).'</pre>';exit;
         $this->validation->setRuleGroup('asigna_membresia');
         
         if (!$this->validation->withRequest($this->request)->run()) {
@@ -221,16 +263,19 @@ class Membresia extends BaseController{
 
                 }
                 $fecha_final = date("Y-m-d",strtotime($fecha_inicio."+ ".$paquete->dias." days"));
-                $membresia = array(
+                $membresia = [
                     'idpaquete' => $data['idpaquete'],
                     'idmiembros' => $data['idmiembros'],
                     'fecha_inicio' => date("Y-m-d"),
                     'fecha_final' => $fecha_final,
-                    'asistencias' => $paquete->entradas,    
+                    'asistencias' => $paquete->entradas,  
+                    'dias_asistencia' => $data['dias_asistencia'],
+                    'observacion' => $data['observacion'],
                     'status' => 1
-                );
-                //echo '<pre>'.var_export($data, true).'</pre>';
-                $this->membresiasModel->save($membresia);
+                ];
+                
+                $this->membresiasModel->insert($membresia);
+
                 $idmembresias = $this->db->insertID();
                 //echo '<pre>'.var_export($data, true).'</pre>';
                 if ($idmembresias) {

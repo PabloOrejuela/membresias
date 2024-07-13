@@ -28,3 +28,18 @@ label{
     margin-top: 5px;
     font-size: 0.9em;
 }
+
+#dias-semana{
+    display: none;
+}
+
+input[type=text]{
+    width: 75%;
+    font-size: 0.9em;
+}
+
+input[type=email]{
+    width: 75%;
+    font-size: 0.9em;
+}
+

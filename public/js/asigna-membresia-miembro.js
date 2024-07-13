@@ -1,9 +1,12 @@
 let paquete = document.getElementById("idpaquete");
+let diasSemana = document.getElementById("dias-semana");
+
 
 paquete.addEventListener("change", function(e) {
     alertaMensaje("Se ha cambiado el valor del paquete", 1000, "info")
-})
 
+    diasSemana.style.display = "block"
+})
 
 const alertaMensaje = (msg, time, icon) => {
     const toast = Swal.mixin({

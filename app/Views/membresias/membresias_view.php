@@ -2,11 +2,10 @@
 <div id="layoutSidenav_content">
     <main>
         <div class="container-fluid px-4">
-            <h1 class="mt-4"><?= esc($title); ?></h1>    
+            <h2 class="mt-4"><?= esc($title); ?></h2>    
             <div class="card mb-4">
                 <div class="card-header">
-                    <i class="fa-solid fa-users"></i>
-                    <?= esc($title); ?>
+                    <i class="fa-solid fa-users"></i> <?= esc($subtitle); ?>
                 </div>
                 <div class="card-body tabla-membresias">
                     <?= csrf_field(); ?>
@@ -22,6 +21,7 @@
                             <th>Disponible(Días)</th>
                             <th>Entradas</th>
                             <th>Entradas disponibles</th>
+                            <th>Días Asiste</th>
                             <th>Estado</th>
                             <th>Registrar Asistencia</th>
                             <th>Editar membresía</th>
@@ -99,7 +99,8 @@
                                     } else {
                                         echo '<td id="td-center">0</td>'; 
                                     }
-                                    
+
+                                    echo '<td id="td-center">'.$value->dias_asistencia.'</td>';
                                     
                                     if ($value->status == 1 && $saldo > 0) {
                                         echo '<td id="td-center">ACTIVA</td>';
@@ -133,9 +134,12 @@
                                     }
                                     //ENTRADAS
                                     echo '<td id="td-center">'.$value->entradas.'</td>'; 
+
     
                                     //Dias disponibles
                                     echo '<td id="td-center">'.$saldo.'</td>';
+
+                                    echo '<td id="td-center">'.$value->dias_asistencia.'</td>';
     
                                     //Estado
                                     if ($value->status == 1 && $saldo > 0) {

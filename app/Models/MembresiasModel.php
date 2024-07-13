@@ -11,7 +11,17 @@ class MembresiasModel extends Model{
     protected $useAutoIncrement = true;
     protected $returnType     = 'object';
     protected $useSoftDeletes = false;
-    protected $allowedFields = ['idpaquete', 'idmiembros', 'fecha_inicio', 'fecha_final', 'asistencias', 'total','status'];
+    protected $protectFields    = false;
+    protected $allowedFields = [
+        'idpaquete', 
+        'idmiembros', 
+        'fecha_inicio', 
+        'fecha_final', 
+        'asistencias', 
+        'total',
+        'status',
+        'dias_asistencia'
+    ];
 
     // Dates
     protected $useTimestamps = true;
@@ -36,6 +46,22 @@ class MembresiasModel extends Model{
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
+
+    function _insertMembresia($data){
+        //echo '<pre>'.var_export($data, true).'</pre>';exit;
+        $builder = $this->db->table($this->table);
+        $builder->set('idpaquete', $data['idpaquete']);
+        $builder->set('idpaquete', $data['idpaquete']);
+        $builder->set('fecha_inicio', $data['fecha_inicio']);
+        $builder->set('fecha_final', $data['fecha_final']);
+        $builder->set('asistencias', $data['asistencias']);
+        $builder->set('dias_asistencia', $data['dias_asistencia']);
+        $builder->set('observacion', $data['observacion']);
+        $builder->set('idmiembros', $data['idmiembros']);
+        $builder->set('status', $data['status']);
+        $builder->insert();
+        //echo $this->db->getLastQuery();
+    }
 
     
     function _getMembresias($result = NULL){

@@ -1,11 +1,11 @@
  <div id="layoutSidenav_content">
     <main>
         <div class="container-fluid px-4">
-            <h1 class="mt-4"><?= esc($title); ?></h1>
+            <h2 class="mt-4"><?= esc($title); ?></h2>
                         
             <div class="card mb-4 col-md-8">
                 <div class="card-header">
-                    <i class="fa-solid fa-users"></i>
+                    <i class="fa-solid fa-users"></i><?= esc($subtitle); ?>
                 </div>
                 <div class="card-body">               
                     <style>

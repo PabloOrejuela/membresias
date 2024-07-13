@@ -1,12 +1,11 @@
 <div id="layoutSidenav_content">
     <main>
         <div class="container-fluid px-4">
-            <h3 class="mt-4"><?= esc($title); ?></h3>
+            <h2 class="mt-4"><?= esc($title); ?></h2>
                         
             <div class="card mb-4">
                 <div class="card-header">
-                    <i class="fa-solid fa-users"></i>
-                    <h5>Asigna una membresía a un miembro ya registrado</h5>
+                    <i class="fa-solid fa-users"></i><?= esc($subtitle); ?>
                 </div>
                 <div class="card-body">
                     <table class="table table-bordered table-striped table-hover" id="datatablesSimple" >

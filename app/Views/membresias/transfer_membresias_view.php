@@ -1,12 +1,11 @@
 <div id="layoutSidenav_content">
     <main>
         <div class="container-fluid px-4">
-            <h1 class="mt-4"><?= esc($title); ?></h1>
+            <h2 class="mt-4"><?= esc($title); ?></h2>
                         
             <div class="card mb-4">
                 <div class="card-header">
-                    <i class="fa-solid fa-users"></i>
-                    <?= esc($title); ?>
+                    <i class="fa-solid fa-users"></i><?= esc($subtitle); ?>
                 </div>
                 <div class="card-body">
                     <table class="table table-bordered table-striped table-hover" id="datatablesSimple">
@@ -57,8 +56,7 @@
                                     }else{
                                         echo '<td style="text-align:center;">'.$saldo.'</td>';
                                     }
-                                    
-                                    
+                                          
                                     if ($value->status == 1) {
                                         echo '<td>ACTIVA</td>';
                                     }else{
