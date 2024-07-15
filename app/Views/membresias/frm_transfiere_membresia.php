@@ -58,6 +58,7 @@
                             ?>
                         </table>
                         <input type="submit" class="btn btn-outline-info" value="Transferir">
+                        <a href="<?= site_url(); ?>transfer" class="btn btn-outline-secondary" id="btn-cancela">Regresar</a>
                     </form>
                 </div>
             </div>

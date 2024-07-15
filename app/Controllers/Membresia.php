@@ -246,7 +246,7 @@ class Membresia extends BaseController{
             if ($data['idpaquete'] != 0 && $data['idpaquete'] != '0') {
                 $fecha_inicio = date("Y-m-d"); 
                 if($paquete->idcategoria == 3){
-
+                    //PABLO aquí falta algo
                 }
                 $fecha_final = date("Y-m-d",strtotime($fecha_inicio."+ ".$paquete->dias." days"));
                 $membresia = [
@@ -269,7 +269,7 @@ class Membresia extends BaseController{
                         'idmembresias' => $idmembresias,
                         'idmiembros' => $this->request->getPostGet('idmiembros'),
                         'observacion' => $this->request->getPostGet('observacion'),
-                        'idtipomovimiento' => 1, //TRANSFERENCIA
+                        'idtipomovimiento' =>2, //Activación
                         'idusuarios' => $this->session->idusuario
                     ];
 
@@ -282,6 +282,7 @@ class Membresia extends BaseController{
 
     public function update_membresia(){ 
         
+        $id = $this->request->getPostGet('idmembresias');
         
         $dias_asistencia = '';
 
@@ -300,7 +301,7 @@ class Membresia extends BaseController{
         $viernes ? $dias_asistencia .= $viernes.',' :$dias_asistencia .= '0,'; 
         $sabado ? $dias_asistencia .= $sabado.',' :$dias_asistencia .= '0,'; 
         $domingo ? $dias_asistencia .= $domingo.',' :$dias_asistencia .= '0,'; 
-        echo '<pre>'.var_export('AQUI', true).'</pre>';exit;
+        
         $data = [
             'idpaquete' => $this->request->getPostGet('idpaquete'),
             'idmiembros' => $this->request->getPostGet('idmiembros'),
@@ -308,8 +309,6 @@ class Membresia extends BaseController{
             'dias_asistencia' => $dias_asistencia
         ];
 
-
-        //echo '<pre>'.var_export($data, true).'</pre>';exit;
         $this->validation->setRuleGroup('asigna_membresia');
         
         if (!$this->validation->withRequest($this->request)->run()) {
@@ -318,42 +317,29 @@ class Membresia extends BaseController{
             return redirect()->back()->withInput()->with('errors', $this->validation->getErrors());
         }else{
        
-            //object
-            $paquete = $this->paquetesModel->find($data['idpaquete']);
+            $membresia = [
+                'idpaquete' => $data['idpaquete'],
+                'idmiembros' => $data['idmiembros'],
+                'dias_asistencia' => $data['dias_asistencia'],
+                'observacion' => $data['observacion'],
+                'status' => 1
+            ];
 
-            if ($data['idpaquete'] != 0 && $data['idpaquete'] != '0') {
-                $fecha_inicio = date("Y-m-d"); 
-                if($paquete->idcategoria == 3){
-
-                }
-                $fecha_final = date("Y-m-d",strtotime($fecha_inicio."+ ".$paquete->dias." days"));
-                $membresia = [
-                    'idpaquete' => $data['idpaquete'],
-                    'idmiembros' => $data['idmiembros'],
-                    'fecha_inicio' => date("Y-m-d"),
-                    'fecha_final' => $fecha_final,
-                    'asistencias' => $paquete->entradas,  
-                    'dias_asistencia' => $data['dias_asistencia'],
-                    'observacion' => $data['observacion'],
-                    'status' => 1
+            $res = $this->membresiasModel->update($id, $membresia);
+            //echo $this->db->getLastQuery();
+            
+            if ($res) {
+                $movimiento = [
+                    'idmembresias' => $id,
+                    'idmiembros' => $this->request->getPostGet('idmiembros'),
+                    'observacion' => $this->request->getPostGet('observacion'),
+                    'idtipomovimiento' => 2, //Activación
+                    'idusuarios' => $this->session->idusuario
                 ];
-                
-                $this->membresiasModel->insert($membresia);
 
-                $idmembresias = $this->db->insertID();
-                //echo '<pre>'.var_export($data, true).'</pre>';
-                if ($idmembresias) {
-                    $movimiento = [
-                        'idmembresias' => $idmembresias,
-                        'idmiembros' => $this->request->getPostGet('idmiembros'),
-                        'observacion' => $this->request->getPostGet('observacion'),
-                        'idtipomovimiento' => 1, //TRANSFERENCIA
-                        'idusuarios' => $this->session->idusuario
-                    ];
-
-                    $this->movimientoModel->_insert_movimiento($movimiento);
-                }
+                $this->movimientoModel->_insert_movimiento($movimiento);
             }
+            
             return redirect()->to('membresias');
         }
     }

@@ -12,39 +12,80 @@
                     <form action="<?php echo site_url().'update-membresia';?>" method="post">
                         <?= 
                             csrf_field();
-                            //echo '<pre>'.var_export($membresia, true).'</pre>';exit;
+                            
                             if (isset($membresia) && $membresia != NULL) {
 
                                 $asistencia = explode(",", $membresia->dias_asistencia);
-
+                                //echo '<pre>'.var_export($asistencia, true).'</pre>';exit;
                                 echo '
                                 <div class="mb-3">
                                     <label for="nombre" class="form-label">Nombre:</label>
-                                    <input type="text" class="form-control" name="nombre" id="FormControlInput" value="'.$membresia->nombre.'" required placeholder="nombre" readonly>
+                                    <input 
+                                        type="text" 
+                                        class="form-control" 
+                                        name="nombre" 
+                                        id="FormControlInput" 
+                                        value="'.$membresia->nombre.'" 
+                                        required 
+                                        placeholder="nombre" 
+                                        readonly
+                                    >
                                 </div>
                                 <div class="mb-3">
                                     <label for="num_documento" class="form-label">Cédula:</label>
-                                    <input type="text" class="form-control" name="num_documento" id="FormControlInput" value="'.$membresia->num_documento.'" required placeholder="CI" readonly>
+                                    <input 
+                                        type="text" 
+                                        class="form-control" 
+                                        name="num_documento" 
+                                        id="FormControlInput" 
+                                        value="'.$membresia->num_documento.'" 
+                                        required placeholder="CI" 
+                                        readonly
+                                    >
                                 </div>
                                 <div class="mb-3">
                                     <label for="telefono" class="form-label">Teléfono:</label>
-                                    <input type="text" class="form-control" name="telefono" id="FormControlInput" value="'.$membresia->telefono.'" required placeholder="teléfono" readonly>
+                                    <input 
+                                        type="text" 
+                                        class="form-control" 
+                                        name="telefono" 
+                                        id="FormControlInput" 
+                                        value="'.$membresia->telefono.'" 
+                                        required 
+                                        placeholder="teléfono" 
+                                        readonly
+                                    >
                                 </div>
                                 <div class="mb-3">
                                     <label for="email" class="form-label">Email:</label>
-                                    <input type="email" class="form-control" name="email" id="FormControlInput" value="'.$membresia->email.'" required placeholder="jdoe@email.com" readonly>
+                                    <input 
+                                        type="email" 
+                                        class="form-control" 
+                                        name="email" 
+                                        id="FormControlInput" 
+                                        value="'.$membresia->email.'" 
+                                        required 
+                                        placeholder="jdoe@email.com" 
+                                        readonly
+                                    >
                                 </div>
                                 <div class="form-floating mb-4">
-                                    <textarea class="form-control" placeholder="Observaciones" id="floatingTextarea">'.$membresia->observacion.'</textarea>
+                                    <textarea 
+                                        class="form-control" 
+                                        placeholder="Observaciones" 
+                                        id="floatingTextarea"
+                                        rows="4"
+                                        name="observacion"
+                                    >'.$membresia->observacion.'</textarea>
                                     <label for="floatingTextarea">Observaciones</label>
                                 </div>';
                             }
                             echo form_hidden('idmiembros', $membresia->idmiembros);
+                            echo form_hidden('idmembresias', $membresia->idmembresias);
                         ?>
                         <div class="mb-3">
                             <label for="email" class="form-label">Membresías:</label>
                             <select class="form-select" aria-label="Default select example" name="idpaquete" id="idpaquete">
-                                <option value="0">Elija un paquete</option>
                                 <?php 
                                     foreach ($paquetes as $key => $paquete) {
                                         if ($membresia->idpaquete == $paquete->idpaquete) {
@@ -76,7 +117,14 @@
                                                 echo '
                                                     <td id="td-center">
                                                         <div class="form-check">
-                                                            <input class="form-check-input" type="checkbox" value="1" id="flexCheckDefault" name="lunes" checked>
+                                                            <input 
+                                                                class="form-check-input" 
+                                                                type="checkbox" 
+                                                                value="1" 
+                                                                id="flexCheckDefault" 
+                                                                name="lunes" 
+                                                                checked
+                                                            >
                                                         </div>
                                                     </td>
                                                 ';
@@ -84,7 +132,13 @@
                                                 echo '
                                                     <td id="td-center">
                                                         <div class="form-check">
-                                                            <input class="form-check-input" type="checkbox" value="1" id="flexCheckDefault" name="lunes">
+                                                            <input 
+                                                                class="form-check-input" 
+                                                                type="checkbox" 
+                                                                value="1" 
+                                                                id="flexCheckDefault" 
+                                                                name="lunes"
+                                                            >
                                                         </div>
                                                     </td>
                                                 ';
@@ -94,7 +148,14 @@
                                                 echo '
                                                     <td id="td-center">
                                                         <div class="form-check">
-                                                            <input class="form-check-input" type="checkbox" value="1" id="flexCheckDefault" name="martes" checked>
+                                                            <input 
+                                                                class="form-check-input" 
+                                                                type="checkbox" 
+                                                                value="2" 
+                                                                id="flexCheckDefault" 
+                                                                name="martes" 
+                                                                checked
+                                                            >
                                                         </div>
                                                     </td>
                                                 ';
@@ -102,7 +163,13 @@
                                                 echo '
                                                     <td id="td-center">
                                                         <div class="form-check">
-                                                            <input class="form-check-input" type="checkbox" value="1" id="flexCheckDefault" name="martes" >
+                                                            <input 
+                                                                class="form-check-input" 
+                                                                type="checkbox" 
+                                                                value="2" 
+                                                                id="flexCheckDefault" 
+                                                                name="martes" 
+                                                            >
                                                         </div>
                                                     </td>
                                                 ';
@@ -112,7 +179,14 @@
                                                 echo '
                                                     <td id="td-center">
                                                         <div class="form-check">
-                                                            <input class="form-check-input" type="checkbox" value="1" id="flexCheckDefault" name="miercoles" checked>
+                                                            <input 
+                                                                class="form-check-input" 
+                                                                type="checkbox" 
+                                                                value="3" 
+                                                                id="flexCheckDefault" 
+                                                                name="miercoles" 
+                                                                checked
+                                                            >
                                                         </div>
                                                     </td>
                                                 ';
@@ -120,7 +194,13 @@
                                                 echo '
                                                     <td id="td-center">
                                                         <div class="form-check">
-                                                            <input class="form-check-input" type="checkbox" value="1" id="flexCheckDefault" name="miercoles">
+                                                            <input 
+                                                                class="form-check-input" 
+                                                                type="checkbox" 
+                                                                value="3" 
+                                                                id="flexCheckDefault" 
+                                                                name="miercoles" 
+                                                            >
                                                         </div>
                                                     </td>
                                                 ';
@@ -130,7 +210,14 @@
                                                 echo '
                                                     <td id="td-center">
                                                         <div class="form-check">
-                                                            <input class="form-check-input" type="checkbox" value="1" id="flexCheckDefault" name="jueves" checked>
+                                                            <input 
+                                                                class="form-check-input" 
+                                                                type="checkbox" 
+                                                                value="4" 
+                                                                id="flexCheckDefault" 
+                                                                name="jueves" 
+                                                                checked
+                                                            >
                                                         </div>
                                                     </td>
                                                 ';
@@ -138,7 +225,13 @@
                                                 echo '
                                                     <td id="td-center">
                                                         <div class="form-check">
-                                                            <input class="form-check-input" type="checkbox" value="1" id="flexCheckDefault" name="jueves">
+                                                            <input 
+                                                                class="form-check-input" 
+                                                                type="checkbox" 
+                                                                value="4" 
+                                                                id="flexCheckDefault" 
+                                                                name="jueves" 
+                                                            >
                                                         </div>
                                                     </td>
                                                 ';
@@ -148,7 +241,14 @@
                                                 echo '
                                                     <td id="td-center">
                                                         <div class="form-check">
-                                                            <input class="form-check-input" type="checkbox" value="1" id="flexCheckDefault" name="viernes" checked>
+                                                            <input 
+                                                                class="form-check-input" 
+                                                                type="checkbox" 
+                                                                value="5" 
+                                                                id="flexCheckDefault"
+                                                                name="viernes" 
+                                                                checked
+                                                            >
                                                         </div>
                                                     </td>
                                                 ';
@@ -156,7 +256,13 @@
                                                 echo '
                                                     <td id="td-center">
                                                         <div class="form-check">
-                                                            <input class="form-check-input" type="checkbox" value="1" id="flexCheckDefault" name="viernes">
+                                                            <input 
+                                                                class="form-check-input" 
+                                                                type="checkbox" 
+                                                                value="5" 
+                                                                id="flexCheckDefault"
+                                                                name="viernes" 
+                                                            >
                                                         </div>
                                                     </td>
                                                 ';
@@ -166,7 +272,14 @@
                                                 echo '
                                                     <td id="td-center">
                                                         <div class="form-check">
-                                                            <input class="form-check-input" type="checkbox" value="1" id="flexCheckDefault" name="sabado" checked>
+                                                            <input 
+                                                                class="form-check-input" 
+                                                                type="checkbox" 
+                                                                value="6" 
+                                                                id="flexCheckDefault" 
+                                                                name="sabado" 
+                                                                checked
+                                                            >
                                                         </div>
                                                     </td>
                                                 ';
@@ -174,7 +287,13 @@
                                                 echo '
                                                     <td id="td-center">
                                                         <div class="form-check">
-                                                            <input class="form-check-input" type="checkbox" value="1" id="flexCheckDefault" name="sabado">
+                                                            <input 
+                                                                class="form-check-input" 
+                                                                type="checkbox" 
+                                                                value="6" 
+                                                                id="flexCheckDefault" 
+                                                                name="sabado"
+                                                            >
                                                         </div>
                                                     </td>
                                                 ';
@@ -184,7 +303,14 @@
                                                 echo '
                                                     <td id="td-center">
                                                         <div class="form-check">
-                                                            <input class="form-check-input" type="checkbox" value="1" id="flexCheckDefault" name="domingo" checked>
+                                                            <input 
+                                                                class="form-check-input" 
+                                                                type="checkbox" 
+                                                                value="7" 
+                                                                id="flexCheckDefault" 
+                                                                name="domingo" 
+                                                                checked
+                                                            >
                                                         </div>
                                                     </td>
                                                 ';
@@ -192,7 +318,13 @@
                                                 echo '
                                                     <td id="td-center">
                                                         <div class="form-check">
-                                                            <input class="form-check-input" type="checkbox" value="1" id="flexCheckDefault" name="domingo">
+                                                            <input 
+                                                                class="form-check-input" 
+                                                                type="checkbox" 
+                                                                value="7" 
+                                                                id="flexCheckDefault" 
+                                                                name="domingo" 
+                                                            >
                                                         </div>
                                                     </td>
                                                 ';
@@ -204,6 +336,7 @@
                             <p id="error-message"><?= session('errors.dias');?> </p>
                         </div>
                         <input type="submit" name="submit" value="Actualizar" class="btn btn-outline-info" />
+                        <a href="<?= site_url(); ?>membresias" class="btn btn-outline-secondary" id="btn-cancela">Regresar</a>
                     </form>
                 </div>
             </div>
