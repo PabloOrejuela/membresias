@@ -11,6 +11,7 @@ class Membresia extends BaseController{
         $data['logged_in'] = $this->session->logged_in;
         $data['nombre'] = $this->session->nombre;
         $data['permisos'] = $this->rolModel->find($data['idrol']);
+        $data['version'] = $this->version;
 
         return $data;
     }

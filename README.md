@@ -1,5 +1,7 @@
 <h3>Cambios</h3>
 <ul>
+    <li>La función ACl ahora también pasa la información de la versión del sistema</li>
+    <li>Se implementó la función ACL en todos los controladores</li>
     <li>El texto de la versión del sistema se ha pasado al footer</li>
     <li>En el form login se mejoró la validación, ahora mantiene el usaurio en caso de que si haya estado bien</li>
     <li>Se mejoró el mensaje de error en el form login</li>
