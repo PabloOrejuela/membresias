@@ -9,11 +9,14 @@
                     <i class="fa-solid fa-users"></i> <?= esc($subtitle); ?>
                 </div>
                 <div class="card-body">
-                    <form action="<?php echo site_url().'asign_membresia';?>" method="post">
+                    <form action="<?php echo site_url().'update-membresia';?>" method="post">
                         <?= 
                             csrf_field();
+                            //echo '<pre>'.var_export($membresia, true).'</pre>';exit;
                             if (isset($membresia) && $membresia != NULL) {
-                                
+
+                                $asistencia = explode(",", $membresia->dias_asistencia);
+
                                 echo '
                                 <div class="mb-3">
                                     <label for="nombre" class="form-label">Nombre:</label>
@@ -32,7 +35,7 @@
                                     <input type="email" class="form-control" name="email" id="FormControlInput" value="'.$membresia->email.'" required placeholder="jdoe@email.com" readonly>
                                 </div>
                                 <div class="form-floating mb-4">
-                                    <textarea class="form-control" placeholder="Observaciones" id="floatingTextarea"></textarea>
+                                    <textarea class="form-control" placeholder="Observaciones" id="floatingTextarea">'.$membresia->observacion.'</textarea>
                                     <label for="floatingTextarea">Observaciones</label>
                                 </div>';
                             }
@@ -44,7 +47,11 @@
                                 <option value="0">Elija un paquete</option>
                                 <?php 
                                     foreach ($paquetes as $key => $paquete) {
-                                        echo '<option value="'.$paquete->idpaquete.'">'.$paquete->paquete.'</option>';
+                                        if ($membresia->idpaquete == $paquete->idpaquete) {
+                                            echo '<option value="'.$paquete->idpaquete.'" selected>'.$paquete->paquete.'</option>';
+                                        }else{
+                                            echo '<option value="'.$paquete->idpaquete.'">'.$paquete->paquete.'</option>';
+                                        }
                                     }
                                 ?>
                             </select>
@@ -64,51 +71,143 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td id="td-center">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="1" id="flexCheckDefault" name="lunes">
-                                            </div>
-                                        </td>
-                                        <td id="td-center">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="2" id="flexCheckDefault" name="martes">
-                                            </div>
-                                        </td>
-                                        <td id="td-center">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="3" id="flexCheckDefault" name="miercoles">
-                                            </div>
-                                        </td>
-                                        <td id="td-center">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="4" id="flexCheckDefault" name="jueves">
-                                            </div>
-                                        </td>
-                                        <td id="td-center">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="5" id="flexCheckDefault" name="viernes">
-                                            </div>
-                                        </td>
-                                        <td id="td-center">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="6" id="flexCheckDefault" name="sabado">
-                                            </div>
-                                        </td>
-                                        <td id="td-center">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="7" id="flexCheckDefault" name="domingo">
-                                            </div>
-                                        </td>
+                                        <?php
+                                            if ($asistencia[0] == 1) {
+                                                echo '
+                                                    <td id="td-center">
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" type="checkbox" value="1" id="flexCheckDefault" name="lunes" checked>
+                                                        </div>
+                                                    </td>
+                                                ';
+                                            }else{
+                                                echo '
+                                                    <td id="td-center">
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" type="checkbox" value="1" id="flexCheckDefault" name="lunes">
+                                                        </div>
+                                                    </td>
+                                                ';
+                                            }
+
+                                            if ($asistencia[1] == 2) {
+                                                echo '
+                                                    <td id="td-center">
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" type="checkbox" value="1" id="flexCheckDefault" name="martes" checked>
+                                                        </div>
+                                                    </td>
+                                                ';
+                                            }else{
+                                                echo '
+                                                    <td id="td-center">
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" type="checkbox" value="1" id="flexCheckDefault" name="martes" >
+                                                        </div>
+                                                    </td>
+                                                ';
+                                            }
+
+                                            if ($asistencia[2] == 3) {
+                                                echo '
+                                                    <td id="td-center">
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" type="checkbox" value="1" id="flexCheckDefault" name="miercoles" checked>
+                                                        </div>
+                                                    </td>
+                                                ';
+                                            }else{
+                                                echo '
+                                                    <td id="td-center">
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" type="checkbox" value="1" id="flexCheckDefault" name="miercoles">
+                                                        </div>
+                                                    </td>
+                                                ';
+                                            }
+
+                                            if ($asistencia[3] == 4) {
+                                                echo '
+                                                    <td id="td-center">
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" type="checkbox" value="1" id="flexCheckDefault" name="jueves" checked>
+                                                        </div>
+                                                    </td>
+                                                ';
+                                            }else{
+                                                echo '
+                                                    <td id="td-center">
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" type="checkbox" value="1" id="flexCheckDefault" name="jueves">
+                                                        </div>
+                                                    </td>
+                                                ';
+                                            }
+
+                                            if ($asistencia[4] == 5) {
+                                                echo '
+                                                    <td id="td-center">
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" type="checkbox" value="1" id="flexCheckDefault" name="viernes" checked>
+                                                        </div>
+                                                    </td>
+                                                ';
+                                            }else{
+                                                echo '
+                                                    <td id="td-center">
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" type="checkbox" value="1" id="flexCheckDefault" name="viernes">
+                                                        </div>
+                                                    </td>
+                                                ';
+                                            }
+
+                                            if ($asistencia[5] == 6) {
+                                                echo '
+                                                    <td id="td-center">
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" type="checkbox" value="1" id="flexCheckDefault" name="sabado" checked>
+                                                        </div>
+                                                    </td>
+                                                ';
+                                            }else{
+                                                echo '
+                                                    <td id="td-center">
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" type="checkbox" value="1" id="flexCheckDefault" name="sabado">
+                                                        </div>
+                                                    </td>
+                                                ';
+                                            }
+
+                                            if ($asistencia[6] == 7) {
+                                                echo '
+                                                    <td id="td-center">
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" type="checkbox" value="1" id="flexCheckDefault" name="domingo" checked>
+                                                        </div>
+                                                    </td>
+                                                ';
+                                            }else{
+                                                echo '
+                                                    <td id="td-center">
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" type="checkbox" value="1" id="flexCheckDefault" name="domingo">
+                                                        </div>
+                                                    </td>
+                                                ';
+                                            }
+                                        ?>
                                     </tr>
                                 </tbody>
                             </table>
                             <p id="error-message"><?= session('errors.dias');?> </p>
                         </div>
-                        <input type="submit" name="submit" value="Guardar" class="btn btn-outline-info" />
+                        <input type="submit" name="submit" value="Actualizar" class="btn btn-outline-info" />
                     </form>
                 </div>
             </div>
         </div>
     </main>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="<?= site_url(); ?>public/js/asigna-membresia-miembro.js"></script>
+    <script src="<?= site_url(); ?>public/js/edit-membresia-miembro.js"></script>

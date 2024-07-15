@@ -20,3 +20,8 @@ input[type=password] {
     text-align: center;
     margin: 30px 10px;
 }
+
+#error-message{
+    margin-top: 0px;
+	color: #f00;
+}

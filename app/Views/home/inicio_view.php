@@ -8,7 +8,7 @@
                 </div>
                 <div class="card-body">
                     <?= csrf_field(); ?>
-                    <h1>Bienvenidos al módulo de miembros <?= $version; ?>  </h1>
+                    <h3>Módulo de membresías de La Tribu. V: <?= $version; ?>  </h3>
                 </div>
             </div>
         </div>

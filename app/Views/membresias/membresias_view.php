@@ -7,9 +7,9 @@
                 <div class="card-header">
                     <i class="fa-solid fa-users"></i> <?= esc($subtitle); ?>
                 </div>
-                <div class="card-body tabla-membresias">
+                <div class="card-body tabla-membresias ">
                     <?= csrf_field(); ?>
-                    <table class="table table-bordered table-striped table-hover" id="datatablesSimple">
+                    <table class="table table-bordered table-striped table-hover table-responsive" id="datatablesSimple">
                         <thead>
                             <th>Nombre</th>
                             <th>Cédula</th>

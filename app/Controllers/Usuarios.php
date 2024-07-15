@@ -29,9 +29,8 @@ class Usuarios extends BaseController {
             'user' => $this->request->getPostGet('user'),
             'password' => $this->request->getPostGet('password')
         ];
-        //echo '<pre>'.var_export($data, true).'</pre>';
+        //echo '<pre>'.var_export($data, true).'</pre>';exit;
 
-        
         $this->validation->setRuleGroup('login');
 
         if (!$this->validation->withRequest($this->request)->run()) {

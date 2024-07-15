@@ -214,29 +214,92 @@ class Membresia extends BaseController{
         $sabado = $this->request->getPostGet('sabado');
         $domingo = $this->request->getPostGet('domingo');
 
-        if ($lunes) {
-            $dias_asistencia .= $lunes.',';
-        } 
-        if ($martes) {
-            $dias_asistencia .= $martes.',';
+        $lunes ? $dias_asistencia .= $lunes.',' :$dias_asistencia .= '0,'; 
+        $martes ? $dias_asistencia .= $martes.',' :$dias_asistencia .= '0,'; 
+        $miercoles ? $dias_asistencia .= $miercoles.',' :$dias_asistencia .= '0,'; 
+        $jueves ? $dias_asistencia .= $jueves.',' :$dias_asistencia .= '0,'; 
+        $viernes ? $dias_asistencia .= $viernes.',' :$dias_asistencia .= '0,'; 
+        $sabado ? $dias_asistencia .= $sabado.',' :$dias_asistencia .= '0,'; 
+        $domingo ? $dias_asistencia .= $domingo.',' :$dias_asistencia .= '0,'; 
+        
+        $data = [
+            'idpaquete' => $this->request->getPostGet('idpaquete'),
+            'idmiembros' => $this->request->getPostGet('idmiembros'),
+            'observacion' => $this->request->getPostGet('observacion'),
+            'dias_asistencia' => $dias_asistencia
+        ];
+
+
+        //echo '<pre>'.var_export($data, true).'</pre>';exit;
+        $this->validation->setRuleGroup('asigna_membresia');
+        
+        if (!$this->validation->withRequest($this->request)->run()) {
+            //Depuración
+            //dd($validation->getErrors());
+            return redirect()->back()->withInput()->with('errors', $this->validation->getErrors());
+        }else{
+       
+            //object
+            $paquete = $this->paquetesModel->find($data['idpaquete']);
+
+            if ($data['idpaquete'] != 0 && $data['idpaquete'] != '0') {
+                $fecha_inicio = date("Y-m-d"); 
+                if($paquete->idcategoria == 3){
+
+                }
+                $fecha_final = date("Y-m-d",strtotime($fecha_inicio."+ ".$paquete->dias." days"));
+                $membresia = [
+                    'idpaquete' => $data['idpaquete'],
+                    'idmiembros' => $data['idmiembros'],
+                    'fecha_inicio' => date("Y-m-d"),
+                    'fecha_final' => $fecha_final,
+                    'asistencias' => $paquete->entradas,  
+                    'dias_asistencia' => $data['dias_asistencia'],
+                    'observacion' => $data['observacion'],
+                    'status' => 1
+                ];
+                
+                $this->membresiasModel->insert($membresia);
+
+                $idmembresias = $this->db->insertID();
+                //echo '<pre>'.var_export($data, true).'</pre>';
+                if ($idmembresias) {
+                    $movimiento = [
+                        'idmembresias' => $idmembresias,
+                        'idmiembros' => $this->request->getPostGet('idmiembros'),
+                        'observacion' => $this->request->getPostGet('observacion'),
+                        'idtipomovimiento' => 1, //TRANSFERENCIA
+                        'idusuarios' => $this->session->idusuario
+                    ];
+
+                    $this->movimientoModel->_insert_movimiento($movimiento);
+                }
+            }
+            return redirect()->to('membresias');
         }
-        if ($miercoles) {
-            $dias_asistencia .= $miercoles.',';
-        }
-        if ($jueves) {
-            $dias_asistencia .= $jueves.',';
-        }
-        if ($viernes) {
-            $dias_asistencia .= $viernes.',';
-        }
-        if ($sabado) {
-            $dias_asistencia .= $sabado.',';
-        }
-        if ($domingo) {
-            $dias_asistencia .= $domingo.',';
-        }
+    }
+
+    public function update_membresia(){ 
         
         
+        $dias_asistencia = '';
+
+        $lunes = $this->request->getPostGet('lunes');
+        $martes = $this->request->getPostGet('martes');
+        $miercoles = $this->request->getPostGet('miercoles');
+        $jueves = $this->request->getPostGet('jueves');
+        $viernes = $this->request->getPostGet('viernes');
+        $sabado = $this->request->getPostGet('sabado');
+        $domingo = $this->request->getPostGet('domingo');
+
+        $lunes ? $dias_asistencia .= $lunes.',' :$dias_asistencia .= '0,'; 
+        $martes ? $dias_asistencia .= $martes.',' :$dias_asistencia .= '0,'; 
+        $miercoles ? $dias_asistencia .= $miercoles.',' :$dias_asistencia .= '0,'; 
+        $jueves ? $dias_asistencia .= $jueves.',' :$dias_asistencia .= '0,'; 
+        $viernes ? $dias_asistencia .= $viernes.',' :$dias_asistencia .= '0,'; 
+        $sabado ? $dias_asistencia .= $sabado.',' :$dias_asistencia .= '0,'; 
+        $domingo ? $dias_asistencia .= $domingo.',' :$dias_asistencia .= '0,'; 
+        echo '<pre>'.var_export('AQUI', true).'</pre>';exit;
         $data = [
             'idpaquete' => $this->request->getPostGet('idpaquete'),
             'idmiembros' => $this->request->getPostGet('idmiembros'),

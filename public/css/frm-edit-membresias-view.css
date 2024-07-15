@@ -1,0 +1,45 @@
+#td-center{
+    text-align: center;
+}
+
+#td-center-red{
+    text-align: center;
+    color: rgb(223, 7, 7);
+}
+
+a {
+	text-decoration: none;
+}
+
+#error-message{
+	color: #f00;
+    font-size: 0.8em;
+}
+
+.form-check #flexCheckDefault{
+    margin: 0 auto;
+}
+
+label{
+    font-weight: bold;
+}
+
+#tabla-semana{
+    margin-top: 5px;
+    font-size: 0.9em;
+}
+
+#dias-semana{
+    display: block;
+}
+
+input[type=text]{
+    width: 75%;
+    font-size: 0.9em;
+}
+
+input[type=email]{
+    width: 75%;
+    font-size: 0.9em;
+}
+

@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="<?= site_url(); ?>public/css/login.css">
+<link rel="stylesheet" href="<?= site_url(); ?>public/css/login-view.css">
 <div class="col-md-12 mt-5" id="wrap">
   <div class="login-box">
     <div class="login-logo">
@@ -14,12 +14,12 @@
           //session()->getFlashdata('error'); 
         ?>
         <form action="<?= base_url(); ?>validate" method="post" class="form">
-          <div class="input-group mb-3">
-            <input type="text" class="form-control" name="user" placeholder="usuario">
+          <div class="input-group mb-2">
+            <input type="text" class="form-control" name="user" placeholder="usuario" autocomplete="off" value="<?= old('user'); ?>">
           </div>
           <p id="error-message"><?= session('errors.user');?> </p>
-          <div class="input-group mb-3">
-            <input type="password" class="form-control" name="password" placeholder="Password">
+          <div class="input-group mb-2">
+            <input type="password" class="form-control" name="password" placeholder="Password" autocomplete="off">
           </div>
           <p id="error-message"><?= session('errors.password');?> </p>
           <div class="row">
