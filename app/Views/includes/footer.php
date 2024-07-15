@@ -14,7 +14,7 @@
                 <footer class="py-4 bg-light mt-auto">
                     <div class="container-fluid px-4">
                         <div class="d-flex align-items-center justify-content-between small">
-                            <div class="text-muted">Copyright &copy; appdvp.com <?= date('Y');?></div>
+                            <div class="text-muted">Copyright &copy; appdvp.com <?= date('Y').'. ';?> Versión: <?= $version;?></div>
                             <div>
                                 <a href="#" target="_blank">Facebook</a>
                                 &middot;
